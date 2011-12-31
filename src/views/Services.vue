@@ -72,8 +72,8 @@ nav{
     align-items:center;
 }
 .btn{
-    width:45px;
-    height:45px;
+    width:55px;
+    height:55px;
     background: rgb(255, 255, 255);
     border-radius:50%;
     position:absolute;
@@ -90,8 +90,8 @@ nav{
 .btn:hover,.btn:active{
     background: #41FF98;
     box-shadow:0px 0px 1px 0px #41FF98;
-    width:55px;
-    height:55px;
+    width:65px;
+    height:65px;
 }
 .btn:focus,.btn:active{
     outline:none;

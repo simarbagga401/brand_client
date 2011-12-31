@@ -1,0 +1,21 @@
+export default{
+    user1:{
+        _id:"",
+        username:"",
+        password:"",
+        orders:[
+            {
+                type:"webapp",
+                info:{
+                    moqups:[],
+                    colors:[],
+                    fonts:[],
+                    media:[],
+                    description:"",
+                    components:[],
+                    technologies:[]
+                }
+            }
+        ]
+    }
+}

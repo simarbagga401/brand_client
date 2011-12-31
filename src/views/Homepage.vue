@@ -2,6 +2,11 @@
   <section class="APPLICATION">
       <nav>
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
+        <h3 class="BrandName">Bruh.</h3>
+        <ul>
+            <li><a href="" to="/login" exact class="List1">Orders</a></li>
+            <li><router-link to="/orders" exact  href="" class="List2">Login</router-link></li>
+        </ul>
       </nav>
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main v-show='!HamburgerOpen'>
@@ -40,7 +45,6 @@
     <div class="btn btn3" :class="GlowClass3" @click="Glow1=false,Glow2=false,Glow3=true,Glow4=false,visibleSlide = 2,SliderFunction3()"></div>
     <div class="btn btn4" :class="GlowClass4" @click="Glow1=false,Glow2=false,Glow3=false,Glow4=true,visibleSlide = 3,SliderFunction4()"></div>
         </div>
-
   </section>
 </template>
 <script>
@@ -51,8 +55,8 @@ import hamburgerContent from '../components/hamburgerContent.vue';
 
 
 
-
 export default {
+    name:'Homepage',
     computed:{
     GlowClass1:function(){
         return{
@@ -142,7 +146,7 @@ mounted(){
         this.Glow4 = true;
         this.visited = 3;
       }
-    },8000)
+    },8000);
 },
 methods:{
     SliderFunction1(){

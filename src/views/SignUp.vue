@@ -8,14 +8,13 @@
             <div class="ImageContainer"><img src="../assets/illustration/sign.svg" alt="ILLUSTRATION_IMAGE" draggable="false"  ondragstart="return false;"></div>
             <h1 class="Heading">{{HeadingContent}}</h1>
             <form >
-                <div class="InputContainer UsernameContainer"><img src="../assets/icons/person.svg" alt="" draggable="false"  ondragstart="return false;"><input type="text"     placeholder="Username" required="true"></div>
-                <div class="InputContainer EmailContainer"><img src="../assets/icons/email.svg" alt="" draggable="false"  ondragstart="return false;"><input type="email"        placeholder="Email Id" required="true"></div>
-                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"  ondragstart="return false;"><input type="password"    placeholder="Password" required="true"></div>
-                <button class="btn sign_up_btn">
+                <div class="InputContainer EmailContainer"><img src="../assets/icons/email.svg" alt="" draggable="false"  ondragstart="return false;"><input type="email"        placeholder="Email Id" required="true" v-model="email"></div>
+                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"  ondragstart="return false;"><input type="password"    placeholder="Password" required="true" v-model="password"></div>
+                <button class="btn sign_up_btn" @click.prevent="createUser()">
                     <h3>SIGN UP</h3>
                 </button>
                 <h1 class="OR">OR</h1>
-                <button class="btn google_btn">
+                <button class="btn google_btn" @click.prevent="changeVueX()">
                     <h3>Sign Up With Google</h3>
                 </button>
                 <button class="btn instagram_btn">
@@ -31,16 +30,35 @@
 <script>
 import hamburger from '../components/hamburger.vue';
 import hamburgerContentWhite from '../components/hamburgerContentWhite.vue';
+import firebase from 'firebase'
+import 'firebase/auth'
 export default {
 data(){
     return{
         HamburgerOpen:false,
-        HeadingContent:'Sign Up For Free'
+        HeadingContent:'Sign Up For Free',
+        email: '',
+        password:'',
     }
 },
         components:{
             hamburger,
             hamburgerContentWhite
+        },
+        methods:{
+         async  createUser(){
+              try {
+                  const user = await  firebase.auth().createUserWithEmailAndPassword(this.email,this.password);
+                  console.log(user);
+                  this.$router.replace({name:"Services"});
+              } catch (err) {
+                  console.log(err.code,err.message)
+              }
+            },
+            changeVueX(){
+            //    let store = this.$store.commit('changeSignInBool');
+               this.$store.commit({type:'changeSignInBool'})
+            }
         }
 }
 </script>

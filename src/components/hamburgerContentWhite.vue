@@ -7,8 +7,10 @@
             <hr >
             <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
             <hr >
-            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
+            <h1>
+                    <router-link to="/login" exact  v-if="!signInBool">{{HamburgerContent4}}</router-link>
+                    <router-link to="/signUp" exact  v-if="!signInBool">{{HamburgerContent5}}</router-link>
+                    <p v-if="signInBool" @click="signOut()">Sign Out</p>
             </h1>
             <hr >
             <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
@@ -17,6 +19,8 @@
 </template>
 
 <script>
+import firebase from 'firebase';
+import 'firebase/auth'
     export default {
         props:["hamburgerOpen"],
         data(){
@@ -27,6 +31,12 @@
                 HamburgerContent4:"LOG IN / ",
                 HamburgerContent5:"SIGN UP",
                 HamburgerContent6:"FAQ SECTION",
+                signInBool:this.$store.getters.getSignInBool,
+            }
+        },
+        methods:{
+             signOut(){
+                firebase.auth().signOut().then(() => console.log('successful signout')).catch(err => console.log(err))
             }
         }
     }

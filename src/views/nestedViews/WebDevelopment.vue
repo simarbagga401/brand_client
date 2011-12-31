@@ -37,14 +37,13 @@
             <p>To Request Any Technology Or Feature You Can <router-link to="/contactUs" exact> Contact Us.</router-link></p>
         </main>
          <main v-show="!HamburgerOpen && stage1Open && !stage2Open && !stage3Open">
-            <webStage1 :stage1Open="stage1Open" :defaultFont="defaultFont" @stageClosed="closeWebStage1"/>
+            <webStage1 :stage1Open="stage1Open" @stage1Closed="closeWebStage1"/>
         </main>
         <main v-show="!HamburgerOpen && stage2Open && !stage1Open && !stage3Open">
-            <!-- <webStage1 :stageOpen="stageOpen" @webStage1Back=""/> -->
-            <h2>stage 2</h2>
+            <webStage2 :stage2Open="stage2Open" @stage2Closed="closeWebStage2"/>
         </main>
         <main v-show="!HamburgerOpen && stage3Open && !stage1Open && !stage2Open">
-            <!-- <webStage1 :stageOpen="stageOpen" @webStage1Back=""/> -->
+            <webStage3 :stage3Open="stage3Open" @stage3Closed="closeWebStage3" />
             <h2>stage 3</h2>
         </main>
   </section>
@@ -58,6 +57,9 @@ import gentleBtn from '../../components/gentleBtn.vue';
 import hamburger from '../../components/hamburger.vue';
 import hamburgerContent from '../../components/hamburgerContent.vue';
 import webStage1 from '../../components/nestedComponents/WebStage1.vue'
+import webStage2 from '../../components/nestedComponents/WebStage2.vue'
+import webStage3 from '../../components/nestedComponents/WebStage3.vue'
+
     export default {
         data(){
             return{
@@ -67,12 +69,10 @@ import webStage1 from '../../components/nestedComponents/WebStage1.vue'
                 stage1Open:false,
                 stage2Open:false,
                 stage3Open:false,
-                defaultFont:'Arial',
                 normalArrow:require("../../assets/icons/arrow_back.svg"),
                 stylishArrow:require("../../assets/icons/arrow_new_back.svg"),
                 fileIcon:require("../../assets/icons/file-upload.svg"),
                 doneIcon:require("../../assets/icons/tick.svg"),
-                stageArray:[this.stage1Open,this.stage2Open,this.stage3Open],
                 stages:[{
                     id:1,
                     heading:'Design / Moqup',
@@ -119,6 +119,12 @@ import webStage1 from '../../components/nestedComponents/WebStage1.vue'
         },
         closeWebStage1(value){
             this.stage1Open = value
+        },
+        closeWebStage2(value){
+            this.stage2Open = value
+        },
+        closeWebStage3(value){
+            this.stage3Open = value
         }
     },
             components:{
@@ -128,7 +134,9 @@ import webStage1 from '../../components/nestedComponents/WebStage1.vue'
             gentleBtn,
             hamburger,
             hamburgerContent,
-            webStage1
+            webStage1,
+            webStage2,
+            webStage3,
         }
     }
 </script>

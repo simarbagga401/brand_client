@@ -17,21 +17,21 @@
                 </div>
                 <div class="warningContainer" v-if="warning">
                     <p><span>NOTE : </span>File size shall not exceed 218kb.</p>    
-                    <p><span>Total Size : </span>{{fileSize}}</p>        
+                    <p><span>Total Size : </span>{{totalFileSize}} kb</p>
                 </div>
+                <a href="https://fonts.google.com" target="_blank" v-if="showFontInfo">Click Here To See Your Fonts.</a>        
     </section>
 </template>
 
 <script>
 
     export default {
-        props:["showWarning","totalSize"],
+        props:["showWarning","totalFileSize","showFontInfo"],
         data(){
             return{
                 heading:"Design / Moqup",
                 description:"Choose UI Design Or We Will Do it For You.",
                 warning:this.showWarning,
-                fileSize:1.2+'mb',
             }
         },
         components:{
@@ -73,6 +73,12 @@ span{
      display:grid;
      grid-template-rows:80% 20%;
      margin:40px 10px;
+}
+a{
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    font-size:15px;
 }
 header{   
     display:grid;

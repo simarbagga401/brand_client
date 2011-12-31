@@ -1,29 +1,30 @@
 <template>
     <section>
         <main>
-    <stageChild :showWarning="true">
+    <stageChild :showWarning="true" :totalFileSize="totalFileSize">
                 <backBtn :image="normalArrow" class="normalArrowBackBtn" @click.native="goBack()" slot="btn"></backBtn>
                 <template slot="setContent">
                     <div id="fileContainer">
                         <h3 class="lightHeading">Uploaded Files :-</h3>
                     <div id="fileBox">
-                        <template  v-for="file in files" >
-                            <p :key="file" id="file">{{file}}</p>
+                        <template  v-for="(file,i) in files" >
+                            <p :key="i" id="file">{{file}}</p>
                         </template>
                     </div>
                     </div>
                 </template>
                 <template slot="iconBtn">
-                    <gentleIconBtn :image="fileIcon">Upload Files</gentleIconBtn>
+                            <input type="file" style="display:none" ref="fileInput" @change="fileSelected">
+                            <gentleIconBtn :image="fileIcon" @click.native="$refs.fileInput.click()">Upload Files</gentleIconBtn>
                 </template>
                 <template slot="iconBtn">
                     <gentleIconBtn :image="doneIcon">Do it For Me </gentleIconBtn>
                 </template>     
     </stageChild>
-    <stageChild :showWarning="false">
+    <stageChild >
                 <template slot="setContent">
                     <div id="fileContainer">
-                        <h3 class="lightHeading">Select Fonts</h3>
+                        <h3 class="lightHeading">Select Colors</h3>
                         <div class="colorBox">
                             <header>
                                 <div class="colorPickerContainer">
@@ -42,7 +43,7 @@
                                 <div class="selectedColor selectedColor3" ></div>
                                 <div class="selectedColor selectedColor4" ></div>
                                 <div class="selectedColor selectedColor5" ></div>
-                            </div>
+                            </div> 
                             </footer>
                         </div>
                     </div>
@@ -51,46 +52,41 @@
                     <gentleIconBtn :image="doneIcon">Do it For Me </gentleIconBtn>
                 </template>     
     </stageChild>
-    <stageChild :showWarning="true">
+    <stageChild :showFontInfo="true">
             <template slot="setContent">
+                <div id="fileContainer">
+                        <h3 class="lightHeading">Select Font</h3>
                  <div class="colorBox">
-                            <header>
+                        <header>
                             <div class="selectBoxContainer">
-                                <select name="selectBox" id="selectBox" v-model="selectedFont">
-                                    <option v-for="font in fonts"  :key="font.family" value>{{font}}</option>
+                                <select name="selectBox" id="selectBox" v-model="fontModel">
+                                    <option v-for="(font,i) in fonts"  :key="i">{{font}}</option>
                                 </select>
                                     <img src="../../assets/icons/arrow_new_back.svg" alt="←" draggable="false" ondragstart="return false;" class="selectImage">
                             </div>
                                 <button class="addColorBtn" @click="addFont()">
                                     Add Font
                                 </button>
-                            </header>
+                        </header>
                             <footer>
-                                <h4>Selected Colors:-</h4>
-                            <div class="selectedColorContainer">
-                                <div class="selectedColor selectedColor1" ></div>
-                                <div class="selectedColor selectedColor2" ></div>
-                                <div class="selectedColor selectedColor3" ></div>
-                                <div class="selectedColor selectedColor4" ></div>
-                                <div class="selectedColor selectedColor5" ></div>
+                            <div class="selectedFontContainer">
+                                <p v-for="(selectedFont,i) in selectedFonts" :key="i">{{selectedFont}}</p>
                             </div>
                             </footer>
                         </div>
-            </template>
-            <template slot="iconBtn">
-                <gentleIconBtn :image="fileIcon">Upload Files</gentleIconBtn>
+                    </div>
             </template>
             <template slot="iconBtn">
                 <gentleIconBtn :image="doneIcon">Do it For Me </gentleIconBtn>
             </template>     
 </stageChild>
-    <stageChild :showWarning="false">
+    <stageChild>
                 <template slot="setContent">
                     <textarea placeholder="for eg. I Want A Minimilistic Design">
                     </textarea>
                 </template>
                 <template slot="iconBtn">
-                    <gentleIconBtn :image="doneIcon">Done</gentleIconBtn>
+                    <gentleIconBtn :image="doneIcon" @click.native="webStage1Done()">Done</gentleIconBtn>
                 </template>     
     </stageChild>
         </main>
@@ -101,7 +97,7 @@
 import stageChild from '../../components/stageChild.vue';
 import gentleIconBtn from '../../components/gentleIconBtn.vue';
 import backBtn from '../../components/back_btn.vue';
-import firebase from 'firebase'
+// import firebase from 'firebase'
 import axios from 'axios'
 // importing pickr
 import '@simonwep/pickr/dist/themes/monolith.min.css';  
@@ -116,8 +112,11 @@ import Pickr from '@simonwep/pickr';
                 doneIcon:require("../../assets/icons/tick.svg"),
                 color:'#42445a',
                 style:'background-color:ffffff',
-                selectedFont:'',
+                fontModel:'Roboto',
+                selectedFonts:[],
+                totalFileSize:null,
                 fonts:[],
+                m:0,
                 n:1,
                 files:[
                     "Homepage.svg"
@@ -133,15 +132,15 @@ import Pickr from '@simonwep/pickr';
             goBack(){
                 let stage1Open = this.stage1Open;
                 stage1Open = false
-                this.$emit('stageClosed',stage1Open)
+                this.$emit('stage1Closed',stage1Open)
             },
             addColor(){
-                var db = firebase.firestore();
-                db.collection('test').add({
-                    message:'this is just for testing'
-                }).then((e)=>{
-                    console.log(e)
-                })
+                // var db = firebase.firestore();
+                // db.collection('test').add({
+                //     message:'this is just for testing'
+                // }).then((e)=>{
+                //     console.log(e)
+                // })
                 let div = document.querySelector(`.selectedColor${this.n}`).style.backgroundColor;
                 if(this.n === 5) this.n = 0 
                 if(div !== 'rgb(255, 255, 255)'){
@@ -152,13 +151,31 @@ import Pickr from '@simonwep/pickr';
                 }
                 console.log(this.selectedFont)
             },
-            addFont(){},
+            addFont(){
+                if(this.selectedFonts.length < 5){
+                    this.selectedFonts.push(this.fontModel);
+                }else{
+                    if(this.m >= 5) this.m = 0;
+                    this.selectedFonts.splice(this.m,1,this.fontModel)
+                    this.m++
+                }
+            },
            async getGoogleFonts(){
                let fonts = await  axios.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDRKHq-w4HxNBIrjpxNXQI9rEnSG4MjgOg&sort=popularity');
                 fonts.data.items.forEach((obj)=>{
                     this.fonts.push(obj.family)
                 })
                     // console.log(document.querySelector('select').style.fontFamily = 'Ubuntu')
+            },
+            fileSelected(e){
+                e.target.files.forEach(file=>{          
+                    this.files.unshift(file.name)
+                    this.totalFileSize += file.size    
+                });
+                console.log(this.totalFileSize)
+            },
+            webStage1Done(){
+                this.goBack()
             }
         },
         mounted(){
@@ -345,6 +362,10 @@ select:hover,select:active,select:focus{
     outline: none;
     border:none;
     background: rgb(250, 250, 250);
+}
+.selectedFontContainer{
+    height:100px;
+    width:100%;
 }
  textarea{
     font-family:poppins,sans-serif;
