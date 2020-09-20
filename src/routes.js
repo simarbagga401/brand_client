@@ -9,6 +9,8 @@ import ContactUs from './views/ContactUs.vue'
 import Orders from './views/Orders.vue'
 import Admin from './views/Admin.vue'
 import Services from './views/Services.vue'
+import ServiceForm from './views/ServiceForm.vue'
+
 
 
 
@@ -68,6 +70,11 @@ export default[
 	path:'/Services',
 	name:'Services',
 	component:Services
+},
+{
+	path:'/ServiceForm',
+	name:'ServiceForm',
+	component:ServiceForm
 }
 ];
 

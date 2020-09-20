@@ -28,13 +28,14 @@
                 <img :src="Order.Image" class="AppImage" alt="Image" draggable="false">
             </div>
         </template>
-        <template v-for="Order in OrderArray">
-            <div class="Order"  :key="Order.id">
-                <h3 class="OrderHeading">{{Order.title}}</h3>
-                <p class="OrderDetails">{{Order.body}}</p>
+        <template v-for="Order in OrderArray" >
+            <div class="Order" :class="{Completed:Order.Completed}"  :key="Order.Key">
+                <h3 class="OrderHeading">{{Order.Heading}}</h3>
+                <router-link to="/Orders/Order" class="OrderDetails">{{Order.Details}}</router-link>
+                <img :src="Order.Image" class="AppImage" alt="Image" draggable="false">
             </div>
         </template>
-        <button class="btn" @click="NewOrder()">Add An Order</button>
+        <button class="btn" @click="GetOrder()">Add An Order</button>
     </main>
 </section>
 </template>
@@ -209,7 +210,7 @@ import axios from 'axios'
             Details:'View And Details',
             Image:require("../assets/illustration/desktop.svg")
         }],
-        OrderArray:null,
+        OrderArray:[],
 
      }
  },
@@ -221,43 +222,25 @@ import axios from 'axios'
     },
   },
   methods:{
-    NewOrder: async function(){
-      const data =  {
-           Completed:true,
-           Heading:'this is a heading',
-           Details:'view product info',
-           Image:'../assets/illustration/desktop.svg'
-       }
-      //  const JsonData = JSON.stringify(data);
-       // console.log(`initial state and             ${JsonData}`);
+      GetOrder: async function(){
+          const GetOrder = await axios('http://localhost:3000/Orders');
+          try {
+                GetOrder.data.filter((Object)=>{
+                Object.Image = `require(${Object.Image})`
+                this.OrderArray.push(Object)
+                console.log(Object.Image)
+                });
+                console.log(this.OrderArray);
+                
 
-       // const req = await  axios.post('http://localhost:3000/Orders',{
-       //     "Completed":true,
-       //     "Heading":"this is a heading",
-       //     "Details":"view product info",
-       //     "Image":"../assets/illustration/desktop.svg"
-       //  },axiosConfig);
-       
-    // const req = await fetch('https://jsonplaceholder.typicode.com/posts', {                         
-    //                   method: 'POST', 
-    //                   headers: {
-    //                     'Content-Type': 'application/json',
-    //                   },
-    //                   body: JSON.stringify(data)
-    //                 });
-    const req = await axios.post('https://localhost:3000',data)
-    console.log(req.data);
+        } catch (err) {
+            if (err) console.log(err)
+        }
+      }
+
     }
-  },
-  mounted(){
-    const burger = async ()=>{
-    const request = await axios('https://jsonplaceholder.typicode.com/posts')
-    console.log(request.data)
-    // this.OrderArray = request.data
-    // console.log(this.OrderArray)
-}
-burger()
   }
- }
 
+
+ 
 </script>
