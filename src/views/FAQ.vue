@@ -22,7 +22,7 @@
         </section>
         <main v-show="!HamburgerOpen">
         <template v-for="FAQ in FAQs" >
-            <div class="FAQ" :key="FAQ.key">
+            <div class="FAQ" :key="FAQ._id">
                 <h4 class="QuestionHeading"><span class="QuestionSpan">Q.</span>{{FAQ.question}}</h4>
                 <h4 class="AnswerHeading"><span class="AnswerSpan">A.</span>{{FAQ.answer}}</h4>
             </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
   data(){
     return{
@@ -53,12 +53,7 @@ export default {
         placeholder:'for eg. Is there any money back guarantee',
         QuestionHeading:'Is there Anytype of shecdule provided? So I could Know how much work is pending',
         AnswerHeading:'Yes, Our team provides you a proper Shecdule Which includes specific ‘Checkpoints’.',
-        FAQs:[{
-            key:1,
-            answered:true,
-            question:'Is there Anytype of shecdule provided? So I could Know how much work is pending',
-            answer:'Yes, Our team provides you a proper Shecdule Which includes specific ‘Checkpoints’.'
-        }]
+        FAQs:[]
 
     }
   },
@@ -73,25 +68,45 @@ export default {
     }
   },
   methods:{
-        GenerateFAQ:function(){
+     GenerateFAQ: async function(){
       var TextArea  = document.getElementById('TextArea').value;
       if(TextArea === '' || TextArea === undefined || TextArea === null){
-        alert('Please Write Your Question In The Input Box')
-      }else{
-        this.FAQs.push({
-        key:this.FAQs.length + 1,
-        answered:false,
-        question:TextArea,
-        answer:'Your Question will be Answered Soon'
-      })
-        localStorage.setItem("id","kyle")
+          return alert('Please Write Your Question In The Input Box');
       }
-     document.getElementById('TextArea').value = ''
+     const data = {
+     Answered:false,
+     Question:TextArea,
+     Answer:'Your Question Will Be Answered Soon'
+     }
+      try {
+          const SaveData = await axios.post('http://localhost:3000/FAQ',data); 
+    console.log(SaveData)
+      } catch (err) {
+          if(err) console.log(err);
+      }
       console.log(TextArea)
-      // console.log('😭')
-
+          document.getElementById('TextArea').value = ''
    }
-  }
+  },
+//   mounted:{
+//       ShowFAQ:async function(){
+//         //   try {
+//     //    const GetFAQ = await axios('http://localhost:3000/FAQ');
+//             console.log("hello")
+//                 // GetFAQ.data.filter((Object)=>{
+//                 // const FAQ = {
+//                 //     Answered:Object.body.Answered,
+//                 //     Answer:Object.body.Answer,
+//                 //     Question:Object.body.Question
+//                 // }
+//                 // this.FAQs.push(FAQ);
+//                 // });
+//                 // console.log(this.FAQs);
+//         //   } catch (err) {
+//         //    if(err) console.log(err);
+//         //   }
+//       }
+//   }
 
 }
 </script>

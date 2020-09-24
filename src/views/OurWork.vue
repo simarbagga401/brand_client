@@ -21,7 +21,7 @@
             <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
         </section>
         <main v-show="!HamburgerOpen">
-            <section class="WorkSection WorkSection1" v-for="AppContent in AppContents" :key="AppContent.key">
+            <section class="WorkSection WorkSection1" v-for="AppContent in AppContents" :key="AppContent._id">
                 <div class="WorkContainer" :style="AppContent.ContainerColor">
                     <div class="Work Work1" :class="{Mobile:AppContent.Mobile,Desktop:AppContent.Desktop}">
                         <img :src="AppContent.Image1" alt="Image1" type="image/svg+xml" draggable="false">
@@ -310,7 +310,7 @@ hr{
             Description:"A Wonderful WebApp Which Provides Development and Design Services.",
 
          },
-        {   key:2,
+        {
             Mobile:true,
             Desktop:false,
             Image1:require("../assets/OurWork/Bruh.web[Phone2].svg",),
@@ -320,7 +320,7 @@ hr{
             Heading:"Bruh (MobileApp)",
             Description:"A Wonderful WebApp Which Provides Development and Design Services."
          },
-       {   key:3,
+       {
             Mobile:false,
             Desktop:true,
             Image1:require("../assets/OurWork/Bruh.web[Homepage].svg",),
@@ -328,7 +328,10 @@ hr{
             Image3:require("../assets/OurWork/Bruh.web[Homepage].svg"),
             Image4:require("../assets/OurWork/Bruh.web[Phone2].svg"),
             Heading:"Bruh (DesktopApp)",
-            Description:"A Wonderful WebApp Which Provides Development and Design Services."
+            Description:"A Wonderful WebApp Which Provides Development and Design Services.",
+            ContainerColor:'background-color:lightgreen',
+            BoxColor:'background-color:pink'
+
          }
             ],
     }

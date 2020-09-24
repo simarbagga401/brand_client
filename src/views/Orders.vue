@@ -21,15 +21,8 @@
             <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
             </section>
     <main v-show="!HamburgerOpen">
-        <template v-for="Order in Orders" >
-            <div class="Order" :class="{Completed:Order.Completed}"  :key="Order.Key">
-                <h3 class="OrderHeading">{{Order.Heading}}</h3>
-                <router-link to="/Orders/Order" class="OrderDetails">{{Order.Details}}</router-link>
-                <img :src="Order.Image" class="AppImage" alt="Image" draggable="false">
-            </div>
-        </template>
         <template v-for="Order in OrderArray" >
-            <div class="Order" :class="{Completed:Order.Completed}"  :key="Order.Key">
+            <div class="Order" :class="{Completed:Order.Completed}"  :key="Order._id">
                 <h3 class="OrderHeading">{{Order.Heading}}</h3>
                 <router-link to="/Orders/Order" class="OrderDetails">{{Order.Details}}</router-link>
                 <img :src="Order.Image" class="AppImage" alt="Image" draggable="false">
@@ -196,20 +189,6 @@ import axios from 'axios'
         HamburgerContent6:"FAQ SECTION",
         QuestionHeading:'Is there Anytype of shecdule provided? So I could Know how much work is pending',
         AnswerHeading:'Yes, Our team provides you a proper Shecdule Which includes specific ‘Checkpoints’.',
-        Orders:[{
-            Key:1,
-            Completed:false,
-            Heading:`MOBILE-APPLICATION (In Progress 1/4 Completed)`,
-            Details:'View Schedule And Details',
-            Image:require("../assets/illustration/mobile.svg")
-        },
-        {
-            Key:2,
-            Completed:true,
-            Heading:`DESKTOP-APPLICATION (Delivered At 19/1/20)`,
-            Details:'View And Details',
-            Image:require("../assets/illustration/desktop.svg")
-        }],
         OrderArray:[],
 
      }
@@ -226,13 +205,15 @@ import axios from 'axios'
           const GetOrder = await axios('http://localhost:3000/Orders');
           try {
                 GetOrder.data.filter((Object)=>{
-                Object.Image = `require(${Object.Image})`
-                this.OrderArray.push(Object)
-                console.log(Object.Image)
+                const Orders = {
+                    Completed:Object.Completed,
+                    Heading:Object.Heading,
+                    Details:Object.Details,
+                    Image:require(Object.Image)
+                }
+                this.OrderArray.push(Orders);
                 });
                 console.log(this.OrderArray);
-                
-
         } catch (err) {
             if (err) console.log(err)
         }
