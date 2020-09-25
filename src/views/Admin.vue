@@ -21,7 +21,10 @@
             <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
             </section>
     <main v-show="!HamburgerOpen">
-        
+        <button @click="GenerateWork()">Genrate Work</button>
+        <button @click="ModifyOrder()">Modify Order</button>
+        <button @click="ModifyFAQ()">Modify FAQ</button>
+
     </main>
 </section>
 </template>
@@ -135,6 +138,7 @@ hr{
 }
 </style>
 <script>
+import axios from 'axios';
   export default {
     data(){
      return{
@@ -147,6 +151,35 @@ hr{
         HamburgerContent5:"SIGN UP",
         HamburgerContent6:"FAQ SECTION",
      }
+ },
+ methods:{
+     GenerateWork:async function(){
+         const data ={
+            Mobile:true,
+            Desktop:false,
+            Image1:require("../assets/OurWork/Bruh.web[Homepage].svg",),
+            Image2:require("../assets/OurWork/Bruh.web[LogIn].svg"),
+            Image3:require("../assets/OurWork/Bruh.web[Homepage].svg"),
+            Image4:require("../assets/OurWork/Bruh.web[Phone2].svg"),
+            Heading:"test (test)",
+            Description:"A Wonderful WebApp Which Provides Development and Design Services.",
+            ContainerColor:'background-color:skyblue',
+            BoxColor:'background-color:white'
+         }
+         const SaveData = await axios.post("http://localhost:3000/OurWork",data);
+         try {
+             console.log(SaveData);
+         } catch (err) {
+             if(err) console.log(err);
+         }
+     },
+  ModifyOrder:async function(){
+      console.log("Modified")
+  },
+  ModifyFAQ:async function(){
+      console.log("Modified")
+  },
+
  },
   computed:{
     BurgerFunction:function(){

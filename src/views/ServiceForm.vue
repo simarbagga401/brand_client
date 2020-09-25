@@ -8,23 +8,22 @@
 <script>
 import axios from 'axios'
     export default {
-        methods:{
-              SendOrder:async function(){
-           const data={
-           Completed:true,
-           Heading:'Your Mobile app',
-           Details:'View Your Files',
-           Image:"../assets/illustration/Mobile.svg"
+    methods:{
+     SendOrder: async function(){
+     const data = {
+        Completed:false,
+        Details: "view schedule and files",
+        Heading: "Your Desktop app",
+        Image: require("../assets/illustration/desktop.svg")
+     }
+      try {
+          const SaveData = await axios.post('http://localhost:3000/Orders',data); 
+          if(SaveData) console.log('Faq Posted')
+      } catch (err) {
+          if(err) console.log(err);
       }
-    try {
-    const SaveData = await axios.post('http://localhost:3000/Orders',data); 
-    console.log(SaveData)
-        
-    } catch (error) {
-        if(error) console.log(error)
+   }
     }
-  }
-        }
     }
 </script>
 

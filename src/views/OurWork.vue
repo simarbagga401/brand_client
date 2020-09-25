@@ -287,6 +287,7 @@ hr{
 }
 </style>
 <script>
+import axios from 'axios'
     export default {
   data(){
     return{
@@ -345,6 +346,32 @@ hr{
             open:this.HamburgerOpen
         }
     }
+},
+mounted(){
+     const ShowOurWork = async() =>{
+          const GetOrder = await axios('http://localhost:3000/OurWork');
+          try {
+                GetOrder.data.filter((Object)=>{
+                const AppContent = {
+                    Mobile:Object.Mobile,
+                    Desktop:Object.Desktop,
+                    Image1:Object.Image1,
+                    Image2:Object.Image2,
+                    Image3:Object.Image3,
+                    Image4:Object.Image4,
+                    Heading:Object.Heading,
+                    Description:Object.Description,
+                    ContainerColor:Object.ContainerColor,
+                    BoxColor:Object.BoxColor
+                }
+                this.AppContents.push(AppContent);
+                });
+                console.log(this.AppContents);
+        } catch (err) {
+            if (err) console.log(err)
+        }
+      }
+      ShowOurWork();
 }
 }
 </script>

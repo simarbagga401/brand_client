@@ -28,7 +28,6 @@
                 <img :src="Order.Image" class="AppImage" alt="Image" draggable="false">
             </div>
         </template>
-        <button class="btn" @click="GetOrder()">Add An Order</button>
     </main>
 </section>
 </template>
@@ -201,7 +200,10 @@ import axios from 'axios'
     },
   },
   methods:{
-      GetOrder: async function(){
+
+    },
+    mounted(){
+     const ShowOrder = async() =>{
           const GetOrder = await axios('http://localhost:3000/Orders');
           try {
                 GetOrder.data.filter((Object)=>{
@@ -209,7 +211,7 @@ import axios from 'axios'
                     Completed:Object.Completed,
                     Heading:Object.Heading,
                     Details:Object.Details,
-                    Image:require(Object.Image)
+                    Image:Object.Image
                 }
                 this.OrderArray.push(Orders);
                 });
@@ -218,7 +220,7 @@ import axios from 'axios'
             if (err) console.log(err)
         }
       }
-
+      ShowOrder();
     }
   }
 

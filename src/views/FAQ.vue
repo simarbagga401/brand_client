@@ -23,8 +23,8 @@
         <main v-show="!HamburgerOpen">
         <template v-for="FAQ in FAQs" >
             <div class="FAQ" :key="FAQ._id">
-                <h4 class="QuestionHeading"><span class="QuestionSpan">Q.</span>{{FAQ.question}}</h4>
-                <h4 class="AnswerHeading"><span class="AnswerSpan">A.</span>{{FAQ.answer}}</h4>
+                <h4 class="QuestionHeading"><span class="QuestionSpan">Q.</span>{{FAQ.Question}}</h4>
+                <h4 class="AnswerHeading" :class="{NotAnswered:FAQ.Answered}"><span class="AnswerSpan">A.</span>{{FAQ.Answer}}</h4>
             </div>
         </template>
           <div class="InputContainer">
@@ -80,34 +80,32 @@ export default {
      }
       try {
           const SaveData = await axios.post('http://localhost:3000/FAQ',data); 
-    console.log(SaveData)
+          if(SaveData) console.log('Faq Posted')
       } catch (err) {
           if(err) console.log(err);
       }
-      console.log(TextArea)
-          document.getElementById('TextArea').value = ''
+          document.getElementById('TextArea').value = '';
+          location.reload();
    }
   },
-//   mounted:{
-//       ShowFAQ:async function(){
-//         //   try {
-//     //    const GetFAQ = await axios('http://localhost:3000/FAQ');
-//             console.log("hello")
-//                 // GetFAQ.data.filter((Object)=>{
-//                 // const FAQ = {
-//                 //     Answered:Object.body.Answered,
-//                 //     Answer:Object.body.Answer,
-//                 //     Question:Object.body.Question
-//                 // }
-//                 // this.FAQs.push(FAQ);
-//                 // });
-//                 // console.log(this.FAQs);
-//         //   } catch (err) {
-//         //    if(err) console.log(err);
-//         //   }
-//       }
-//   }
-
+  mounted(){
+      const ShowFAQ = async () =>{
+           const GetFAQ = await axios('http://localhost:3000/FAQ');
+          try {
+                GetFAQ.data.filter((Object)=>{
+                const FAQ = {
+                    Answered:Object.Answered,
+                    Answer:Object.Answer,
+                    Question:Object.Question
+                }
+                this.FAQs.push(FAQ);
+                });
+          } catch (err) {
+           if(err) console.log(err);
+          }
+      }
+      ShowFAQ();
+      }  
 }
 </script>
 
@@ -118,6 +116,7 @@ export default {
     box-sizing:border-box;
     font-family:poppins;
 }
+
 .something{
     background-color:crimson;
     width:300px;
@@ -279,6 +278,9 @@ hr{
     overflow:hidden;
     margin:20px 10px 0px 10px;
     max-width:700px;
+}
+.AnswerHeading.NotAnswered{
+    color:#3F3F3F;
 }
 .QuestionSpan{
     color:#FF7777;
