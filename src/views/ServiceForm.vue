@@ -17,7 +17,7 @@ import axios from 'axios'
         Image: require("../assets/illustration/desktop.svg")
      }
       try {
-          const SaveData = await axios.post('http://localhost:3000/Orders',data); 
+          const SaveData = await axios.post('http://localhost:5000/Orders',data); 
           if(SaveData) console.log('Faq Posted')
       } catch (err) {
           if(err) console.log(err);

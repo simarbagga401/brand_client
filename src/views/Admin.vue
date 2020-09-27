@@ -21,10 +21,36 @@
             <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
             </section>
     <main v-show="!HamburgerOpen">
-        <button @click="GenerateWork()">Genrate Work</button>
-        <button @click="ModifyOrder()">Modify Order</button>
-        <button @click="ModifyFAQ()">Modify FAQ</button>
+        <div class="FaqContainer">
+            <input type="text" class="FaqId">
+            <button class="DeleteFaq">Delete FAQ</button>
+            <button class="ModifyFaq" @click="ModifyFaqInfo = !ModifyFaqInfo">Modify FAQ</button>
+            <div class="ModifyFaqInfo" v-show="ModifyFaqInfo">
 
+            </div>
+        </div>
+
+         <div class="FaqContainer">
+            <input type="text" class="FaqId">
+            <button class="DeleteFaq">Delete FAQ</button>
+            <button class="ModifyFaq" @click="ModifyOrderInfo = !ModifyOrderInfo">Modify FAQ</button>
+            <div class="ModifyOrderInfo" v-show="ModifyOrderInfo">
+                
+            </div>
+        </div>
+
+         <div class="FaqContainer">
+            <input type="text" class="FaqId">
+            <button class="DeleteFaq">Delete FAQ</button>
+            <button class="ModifyFaq" @click="ModifyOurWorkInfo = !ModifyOurWorkInfo">Modify FAQ</button>
+            <button class="GenerateOurWork" @click="GenerateOurWorkInfo = !GenerateOurWorkInfo" >GenerateOurWork</button>
+            <div class="GenerateOurWorkInfo" v-show="GenerateOurWorkInfo">
+
+            </div>
+            <div class="ModifyOurWorkInfo" v-show="ModifyOurWorkInfo">
+                
+            </div>
+        </div>
     </main>
 </section>
 </template>
@@ -150,6 +176,7 @@ import axios from 'axios';
         HamburgerContent4:"LOG IN / ",
         HamburgerContent5:"SIGN UP",
         HamburgerContent6:"FAQ SECTION",
+        ModifyFaqInfo:true
      }
  },
  methods:{

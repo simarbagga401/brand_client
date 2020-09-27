@@ -79,7 +79,7 @@ export default {
      Answer:'Your Question Will Be Answered Soon'
      }
       try {
-          const SaveData = await axios.post('http://localhost:3000/FAQ',data); 
+          const SaveData = await axios.post('http://localhost:5000/FAQ',data); 
           if(SaveData) console.log('Faq Posted')
       } catch (err) {
           if(err) console.log(err);
