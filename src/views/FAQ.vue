@@ -90,7 +90,7 @@ export default {
   },
   mounted(){
       const ShowFAQ = async () =>{
-           const GetFAQ = await axios('http://localhost:3000/FAQ');
+           const GetFAQ = await axios('http://localhost:5000/FAQ');
           try {
                 GetFAQ.data.filter((Object)=>{
                 const FAQ = {
