@@ -10,15 +10,15 @@
             <section class="HamburgerContent" v-show="HamburgerOpen">
             <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
             <hr >
-            <h1><router-link to="/HowItWorks" exact>{{HamburgerContent2}}</router-link></h1>
+            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
             <hr >
-            <h1><router-link to="/OurWork" exact>{{HamburgerContent3}}</router-link></h1>
+            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
             <hr >
-            <h1><router-link to="/Login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/SignUp" exact>{{HamburgerContent5}}</router-link>
+            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
+                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
             </h1>
             <hr >
-            <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
+            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
         </section>
         <main v-show="!HamburgerOpen">
 

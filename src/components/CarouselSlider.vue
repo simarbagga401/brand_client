@@ -6,7 +6,7 @@
 	</transition>
 
 </template>
-
+ 
 
 <style scoped>
 
@@ -39,6 +39,7 @@
 	0%{ transform: translateX(0%); }
 	100%{ transform: translateX(200%); }
 }
+
 </style>
 
 <script>

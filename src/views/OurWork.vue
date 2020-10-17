@@ -10,15 +10,15 @@
             <section class="HamburgerContent" v-show="HamburgerOpen">
             <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
             <hr >
-            <h1><router-link to="/HowItWorks" exact>{{HamburgerContent2}}</router-link></h1>
+            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
             <hr >
-            <h1><router-link to="/OurWork" exact>{{HamburgerContent3}}</router-link></h1>
+            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
             <hr >
-            <h1><router-link to="/Login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/SignUp" exact>{{HamburgerContent5}}</router-link>
+            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
+                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
             </h1>
             <hr >
-            <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
+            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
         </section>
         <main v-show="!HamburgerOpen">
             <section class="WorkSection WorkSection1" v-for="AppContent in AppContents" :key="AppContent._id">
@@ -221,14 +221,14 @@ hr{
     left:5%;
 }
 .Work3{
-    width:127px;
-    height:275px;
+    width:150px;
+    height:325px;
     bottom:-5%;
     left:15%;
 }
 .Work4{
-    width:127px;
-    height:275px;
+    width:150px;
+    height:325px;
     bottom:-5%;
     left:30%;
 }  
@@ -251,6 +251,7 @@ hr{
     right:10px;
     border-radius:5px;
     padding:10px;
+    box-shadow:-3px 3px 7px rgba(0,0,0,0.3);
 }
 .WorkContent h1{
     font-weight:600;
@@ -271,6 +272,7 @@ hr{
     right:0px;
     font-weight:400;
     font-size:16px;
+    box-shadow:-3px 3px 7px rgba(0,0,0,0.3);
 }
 .btn:focus{
     background-color:#39C87A;
@@ -278,11 +280,56 @@ hr{
     border:none;
 }
 @media screen and (max-width:750px){
-    .Work1,.Work3,.Work4{
+    .Work1,.Work3{
         display:none;
     }
     .Work2{
-        left:15%;
+        left:1%;
+        width:320px;
+        height:227px;
+    }
+    .Work4{
+        left:70%;
+        bottom:18%;
+        width:127px;
+        height:274px;
+    }
+    .Work4.Mobile{
+        left:55%;
+        bottom:50%;
+    }
+    .Work3.Desktop{
+        display: block;
+        width:280px;
+        height:200px;
+        left:30%;
+        bottom:18%;
+    }
+    @media screen and (max-width:380px){
+        .Work1,.Work4{
+            display: none;
+        }
+        .Work3.Desktop{
+            display:none;
+        }
+        .WorkContent{
+            height:200px;
+            width:230px;
+        }
+        .Work2{
+            width:280px;
+            height:200px;
+            background: #000;
+        }
+        .Work2.Mobile{
+            top:-2%;
+        }
+        .WorkContent h1{
+            font-size:18px;
+        }
+        .WorkContent p{
+            font-size:15px;
+        }
     }
 }
 </style>
@@ -331,7 +378,8 @@ import axios from 'axios'
             Heading:"Bruh (DesktopApp)",
             Description:"A Wonderful WebApp Which Provides Development and Design Services.",
             ContainerColor:'background-color:lightgreen',
-            BoxColor:'background-color:pink'
+            BoxColor:'background-color:white',
+            TextColor:'color:black'
 
          }
             ],

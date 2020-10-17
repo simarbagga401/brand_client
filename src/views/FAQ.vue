@@ -10,25 +10,25 @@
             <section class="HamburgerContent" v-show="HamburgerOpen">
             <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
             <hr >
-            <h1><router-link to="/HowItWorks" exact>{{HamburgerContent2}}</router-link></h1>
+            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
             <hr >
-            <h1><router-link to="/OurWork" exact>{{HamburgerContent3}}</router-link></h1>
+            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
             <hr >
-            <h1><router-link to="/Login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/SignUp" exact>{{HamburgerContent5}}</router-link>
+            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
+                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
             </h1>
             <hr >
-            <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
+            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
         </section>
         <main v-show="!HamburgerOpen">
         <template v-for="FAQ in FAQs" >
             <div class="FAQ" :key="FAQ._id">
                 <h4 class="QuestionHeading"><span class="QuestionSpan">Q.</span>{{FAQ.Question}}</h4>
-                <h4 class="AnswerHeading" :class="{NotAnswered:FAQ.Answered}"><span class="AnswerSpan">A.</span>{{FAQ.Answer}}</h4>
+                <h4 class="AnswerHeading" :class="{NotAnswered:FAQ.NotAnswered}"><span class="AnswerSpan">A.</span>{{FAQ.Answer}}</h4>
             </div>
         </template>
           <div class="InputContainer">
-              <h3>{{ Questions }}</h3>
+              <h3 class="InputHeading">{{ Questions }}</h3>
               <textarea  :placeholder="placeholder" id="TextArea"></textarea>
               <button id="Btn" @click="GenerateFAQ()">Send</button>
           </div>
@@ -48,12 +48,52 @@ export default {
         HamburgerContent4:"LOG IN / ",
         HamburgerContent5:"SIGN UP",
         HamburgerContent6:"FAQ SECTION",
-        Heading:'Frequently Asked Question',
+        Heading:'FAQ Section',
         Questions:'Got Any Questions? You Can Write It Here!',
         placeholder:'for eg. Is there any money back guarantee',
         QuestionHeading:'Is there Anytype of shecdule provided? So I could Know how much work is pending',
         AnswerHeading:'Yes, Our team provides you a proper Shecdule Which includes specific ‘Checkpoints’.',
-        FAQs:[]
+        FAQs:[{
+            NotAnswered:true,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, sequi.",
+            Answer:"This Question Will be Answered Soon"
+        },
+        {
+            NotAnswered:false,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam neque veniam culpa explicabo animi ullam aspernatur ipsam iusto voluptatum facere excepturi a, porro libero amet perspiciatis minus molestias. Quo, itaque.",
+            Answer:"This Question Will be Answered Soon"
+        },
+        {
+            NotAnswered:true,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, sequi.",
+            Answer:"This Question Will be Answered Soon"
+        },  
+        {
+            NotAnswered:false,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam neque veniam culpa explicabo animi ullam aspernatur ipsam iusto voluptatum facere excepturi a, porro libero amet perspiciatis minus molestias. Quo, itaque.",
+            Answer:"This Question Will be Answered Soon"
+        },
+        {
+            NotAnswered:true,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, sequi.",
+            Answer:"This Question Will be Answered Soon"
+        },
+        {
+            NotAnswered:false,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam neque veniam culpa explicabo animi ullam aspernatur ipsam iusto voluptatum facere excepturi a, porro libero amet perspiciatis minus molestias. Quo, itaque.",
+            Answer:"This Question Will be Answered Soon"
+        },
+        {
+            NotAnswered:true,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, sequi.",
+            Answer:"This Question Will be Answered Soon"
+        },  
+        {
+            NotAnswered:false,
+            Question:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam neque veniam culpa explicabo animi ullam aspernatur ipsam iusto voluptatum facere excepturi a, porro libero amet perspiciatis minus molestias. Quo, itaque.",
+            Answer:"This Question Will be Answered Soon"
+        },
+        ]
 
     }
   },
@@ -74,9 +114,9 @@ export default {
           return alert('Please Write Your Question In The Input Box');
       }
      const data = {
-     Answered:false,
+     NotAnswered:true,
      Question:TextArea,
-     Answer:'Your Question Will Be Answered Soon'
+     Answer:'This Question Will Be Answered Soon'
      }
       try {
           const SaveData = await axios.post('http://localhost:5000/FAQ',data); 
@@ -89,22 +129,34 @@ export default {
    }
   },
   mounted(){
-      const ShowFAQ = async () =>{
-           const GetFAQ = await axios('http://localhost:5000/FAQ');
-          try {
-                GetFAQ.data.filter((Object)=>{
-                const FAQ = {
-                    Answered:Object.Answered,
-                    Answer:Object.Answer,
-                    Question:Object.Question
-                }
-                this.FAQs.push(FAQ);
-                });
-          } catch (err) {
-           if(err) console.log(err);
-          }
+    //   const ShowFAQ = async () =>{
+    //        const GetFAQ = await axios('http://localhost:5000/FAQ');
+    //       try {
+    //             GetFAQ.data.filter((Object)=>{
+    //             const FAQ = {
+    //                 NotAnswered:Object.Answered,
+    //                 Answer:Object.Answer,
+    //                 Question:Object.Question
+    //             }
+    //             this.FAQs.unshift(FAQ);
+    //             });
+    //       } catch (err) {
+    //        if(err) console.log(err);
+    //       }
+    //   }
+    //   ShowFAQ();
+      let Disappear = () =>{
+          let InputContainer = document.querySelector('.InputContainer');
+          InputContainer.style.display = "block";
+          window.addEventListener('scroll',()=>{
+              if(window.scrollY == window.scrollMaxY){
+                  InputContainer.style.display = "none";
+              }else{
+                  InputContainer.style.display = "block";
+              }  
+          });
       }
-      ShowFAQ();
+      Disappear();
       }  
 }
 </script>
@@ -223,7 +275,8 @@ hr{
     color:#41FF98;
 }
 .InputContainer{
-    width:80vw;
+    width:90vw;
+    max-width:800px;
     height:140px;
     position:fixed;
     bottom:10px;
@@ -232,20 +285,27 @@ hr{
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
-    padding:5px;
+    padding:15px;
+    border-radius:10px;
+    background:rgb(255, 255, 255);
+    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.2);
 }
 .InputContainer h3{
-    color:black
+    color:black;
+    font-size:20px;
 }
 .InputContainer textarea{
-    width:90%;
+    width:95%;
     height:40px;
     padding:10px;
     border:none;
     background-color:#DCFFD7;
     border-radius:5px;
     resize:none;
-    transition:all .7s ease-out;
+    transition:all .5s ease-out;
+    position: absolute;
+    bottom:10px;
+    left:10px;
 }
 .InputContainer button{
     background-color:#41FF98;
@@ -255,8 +315,9 @@ hr{
     outline:none;
     border:none;
     position:absolute;
-    bottom:9%;
-    right:12%;
+    bottom:13%;
+    right:6%;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
 }
 .InputContainer button:focus, .InputContainer textarea:focus{
     outline:none;
@@ -274,13 +335,21 @@ hr{
     justify-content:space-evenly;
     background-color:#DCFFD7;
     border-radius:5px;
-    padding:10px;
-    overflow:hidden;
-    margin:20px 10px 0px 10px;
-    max-width:700px;
+    padding:20px;
+    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.2);
+    margin:20px 15px 0px 15px;
+    max-width:650px;
+}
+
+span{
+    margin:5px;
 }
 .AnswerHeading.NotAnswered{
     color:#3F3F3F;
+    font-style: italic;
+}
+.AnswerHeading{
+    margin:5px;
 }
 .QuestionSpan{
     color:#FF7777;
@@ -292,6 +361,20 @@ hr{
 }
 h4{
     font-weight:400;
+}
+    .InputContainer textarea::placeholder{
+        font-size:15px;
+        font-style:italic;
+    }
+@media screen and (max-width:500px){
+    .InputContainer h3{
+        font-size:15px;
+    }
+    .InputContainer button{
+        bottom:5px;
+        right:5px;
+    }
+
 }
 </style>
        

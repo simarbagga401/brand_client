@@ -33,3 +33,20 @@ export default {
     100%{transform:translateX(0px)}
 }
 </style>
+<style>
+   *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        -webkit-font-smoothing: auto;
+        -moz-osx-font-smoothing:auto;
+        font-smooth:2em;
+        user-select: none;
+      }
+       a{
+        text-decoration:none;
+      }
+      li{
+        list-style-type: none;
+      }
+</style>

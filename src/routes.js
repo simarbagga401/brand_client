@@ -22,57 +22,57 @@ export default[
 	component:Home
 },
 {
-	path:'/Login',
+	path:'/login',
 	name:'Login',
 	component:Login
 },
 {
-	path:'/SignUP',
+	path:'/signUP',
 	name:'SignUP',
 	component:SignUp
 },
 {
-	path:'/ForgotPassword',
+	path:'/forgotPassword',
 	name:'ForgotPassword',
 	component:ForgotPassword
 },
 {
-	path:'/OurWork',
+	path:'/ourWork',
 	name:'OurWork',
 	component:OurWork
 },
 {
-	path:'/FAQ',
+	path:'/fAQ',
 	name:'FAQ',
 	component:FAQ
 },
 {
-	path:'/HowItWorks',
+	path:'/howItWorks',
 	name:'HowItWorks',
 	component:HowItWorks
 },
 {
-	path:'/ContactUs',
+	path:'/contactUs',
 	name:'ContactUs',
 	component:ContactUs
 },
 {
-	path:'/Orders',
+	path:'/orders',
 	name:'Orders',
 	component:Orders
 },
 {
-	path:'/Admin',
+	path:'/admin',
 	name:'Admin',
 	component:Admin
 },
 {
-	path:'/Services',
+	path:'/services',
 	name:'Services',
 	component:Services
 },
 {
-	path:'/ServiceForm',
+	path:'/serviceForm',
 	name:'ServiceForm',
 	component:ServiceForm
 }

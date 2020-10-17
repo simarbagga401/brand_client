@@ -7,27 +7,27 @@
         </div>    
     <h3 class="BrandName">{{BrandName}}</h3>
     <ul>
-        <li class="List1"><router-link to="/SignUp" exact>SIGN UP</router-link ></li>
-        <li class="List2"><router-link to="/Login" exact> LOG IN</router-link ></li>
+        <li class="List1"><router-link to="/signUp" exact>SIGN UP</router-link ></li>
+        <li class="List2"><router-link to="/login" exact> LOG IN</router-link ></li>
     </ul>
         <div class="CartContainer">
-          <router-link to="/Orders" > <img src="../assets/icons/cart.svg" alt="Cart" type="image/svg+xml"  draggable="false">  </router-link>
+          <router-link to="/orders" > <img src="../assets/icons/cart.svg" alt="Cart" type="image/svg+xml"  draggable="false">  </router-link>
         </div>
 </nav>  
         <!-- NAVBAR OVER  -->
         <section class="HamburgerContent" v-show="HamburgerOpen">
             <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
             <hr >
-            <h1><router-link to="/HowItWorks" exact>{{HamburgerContent2}}</router-link></h1>
+            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
             <hr >
-            <h1><router-link to="/OurWork" exact>{{HamburgerContent3}}</router-link></h1>
+            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
             <hr >
             <h1>
-                <router-link to="/Login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/SignUp" exact>{{HamburgerContent5}}</router-link>
+                <router-link to="/login" exact>{{HamburgerContent4}}</router-link>
+                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
             </h1>
             <hr >
-            <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
+            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
         </section>
         <main v-show='!HamburgerOpen'>
      <section class="Image" >       
@@ -65,13 +65,14 @@
     <div class="btn btn3" :class="GlowClass3" @click="Glow1=false,Glow2=false,Glow3=true,Glow4=false,visibleSlide = 2,SliderFunction3()"></div>
     <div class="btn btn4" :class="GlowClass4" @click="Glow1=false,Glow2=false,Glow3=false,Glow4=true,visibleSlide = 3,SliderFunction4()"></div>
         </div>
-        <!-- BACKGROUND VECTORS  -->
-<div class="BackgroundVector"></div>
+
   </section>
 </template>
 <script>
 import Carousel from '../components/Carousel.vue'
 import CarouselSlider from '../components/CarouselSlider.vue'
+// import CarouselSlider2 from '../components/CarouselSliderTwo.vue'
+
 
 
 
@@ -137,10 +138,10 @@ data(){
 components:{
     Carousel,
     CarouselSlider,
+    // CarouselSlider2
 
 },
 mounted(){
-    console.log("mounted");
     setInterval(()=>{
       if(this.visibleSlide <= 3){
         this.visibleSlide++
@@ -222,6 +223,7 @@ methods:{
     font-family:'Poppins',sans-serif,arial,verdana,helvetica;
     user-select:none;
 }
+
 nav{
     width:100%;
     height:8vh;
@@ -241,6 +243,7 @@ ul li{
 }   
 .List1:hover,.List2:hover{ 
     background-color:#41FF98;
+    box-shadow: 0px 0px 4px 0px rgb(65, 255, 152);
 }
 ul li a {
     text-decoration:none;
@@ -253,7 +256,7 @@ ul li a {
 }
 .BrandName{
     position:absolute;
-    margin-left:50px;
+    margin-left:60px;
     font-weight:600;
 }
 .CartContainer{
@@ -268,11 +271,12 @@ ul li a {
 
 .CartContainer:hover{
     background-color:#41FF98;
+    box-shadow: 0px 0px 4px 0px rgb(65, 255, 152);
 }
 .HamburgerContainer{
     width:35px;
     height:30px;
-    margin-left:1vw;
+    margin-left:20px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -348,8 +352,9 @@ hr{
     display:flex;
     align-items:center;
     justify-content:center;
-    background-color:#41FF98;
-    box-shadow: -3px 4px 6px 0px rgba(0, 0, 0, 0.25);
+    background-color:rgb(65, 255, 152);
+    box-shadow: 0px 0px 4px 0px rgb(65, 255, 152),
+                -3px 3px 7px rgba(0,0,0,0.3);
     border-radius:5px;
     width:135px;
     height:45px;
@@ -379,12 +384,9 @@ hr{
 }
 .btn1.glow,.btn2.glow,.btn3.glow,.btn4.glow{
     background-color:#41FF98;
+    box-shadow: 0px 0px 4px 0px rgb(65, 255, 152);
 }
-.DescriptionContainer{
-    background-color:none;
-    width:80%;
-    overflow:hidden;
-}
+
 .Heading{
     font-size:35px;
     font-weight:700;
@@ -396,8 +398,20 @@ hr{
 }
 .HeadingBox{
     width:520px;
-    background-color:none;
     display:flex;
+}
+.DescriptionContainer{
+    background-color:none;
+    width:80%;
+    overflow:hidden;
+}
+.DescriptionBox{
+    width:100%;
+    height:150px;
+    display:flex;
+    justify-content:center;
+    background:none;
+    padding:5px;
 }
 .Image{
     position:relative;
@@ -424,12 +438,7 @@ hr{
     overflow:hidden;
     position:relative;
 }
-.DescriptionBox{
-    width:400px;
-    height:150px;
-    display:flex;
-    justify-content:center;
-}
+
 main{
     display:flex;
     align-items:center;
@@ -437,32 +446,23 @@ main{
     width:100vw;
     height:80vh;
 }
-.BackgroundVector{
-    width:100vw;
-    height:100vh;
-    background:url(../assets/illustration/Vector.svg);
-    background-position:center;
-    z-index:-1;
-    opacity:100%;
-    position:absolute;
-    top:0;
-    left:0;
-}
+
 
 @media screen and (max-width:820px){
     main{
         flex-direction:column;
     }
     .DescriptionContainer{
-        width:80vw;
-        background-color:skyblue;
+        width:100%;
+        background-color:none;
+        display: flex;
     }
     .Content{
         order:2;
-        width:80vw;
+        width:75vw;
         align-items:center;
         align-self:center;
-        background-color:tomato;
+        background-color:none;
     }
     .Image{
         order:1;
@@ -472,26 +472,18 @@ main{
         width:300px;
     }
     .HeadingBox{
-        background-color:yellow;
-        justify-self:flex-start;
+        background-color:none;
+        width:75vw;
+        height:70px;
     }
     .btns{
         left:40vw;
     }
-    .DescriptionBox{
-        background-color:lightgreen;
-    }
 
 }
 @media screen and (max-width:530px) and (min-width:370px){
-    main{
-        flex-direction:column;
-    }
     .Content{
         order:2;
-    }
-    .DescriptionBox{
-        text-align:center;
     }
     .Heading{
         font-size:30px;
@@ -503,10 +495,14 @@ main{
     .Image img{
         width:300px;
     }
+
 }
 @media screen and (max-width:450px){
     .Heading{
         font-size:25px;
+    }
+        .Description{
+        font-size:16px;
     }
 }
 @media screen and (max-width:320px){
@@ -525,7 +521,6 @@ main{
     }
     .DescriptionBox{
         width:80vw;
-        align-items:flex-start;
     }
     .Heading{
         font-size:25px;

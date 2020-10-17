@@ -10,22 +10,24 @@
             <section class="HamburgerContent" v-show="HamburgerOpen">
             <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
             <hr >
-            <h1><router-link to="/HowItWorks" exact>{{HamburgerContent2}}</router-link></h1>
+            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
             <hr >
-            <h1><router-link to="/OurWork" exact>{{HamburgerContent3}}</router-link></h1>
+            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
             <hr >
-            <h1><router-link to="/Login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/SignUp" exact>{{HamburgerContent5}}</router-link>
+            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
+                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
             </h1>
             <hr >
-            <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
+            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
             </section>
     <main v-show="!HamburgerOpen">
         <template v-for="Order in OrderArray" >
             <div class="Order" :class="{Completed:Order.Completed}"  :key="Order._id">
-                <h3 class="OrderHeading">{{Order.Heading}}</h3>
-                <router-link to="/Orders/Order" class="OrderDetails">{{Order.Details}}</router-link>
                 <img :src="Order.Image" class="AppImage" alt="Image" draggable="false">
+                <div class="div1">
+                <h3 class="OrderHeading">{{Order.Heading}}</h3>
+                <router-link to="/orders/order" class="OrderDetails">{{Order.Details}}</router-link>
+                </div>
             </div>
         </template>
     </main>
@@ -39,11 +41,11 @@
     font-family:poppins;
     user-select: none;
 }
-p{  
+.OrderDetails{  
     cursor: pointer;
     color:#028B41;
 }
-p:hover{
+.OrderDetails:hover{
     text-decoration:underline;
 }
 nav{
@@ -53,30 +55,33 @@ nav{
     justify-content:flex-start;
     align-items:center;
 }
-.Order{
-    display:flex;
+.div1{
+    display: flex;
     flex-direction:column;
     justify-content:space-evenly;
+    align-items:flex-start;
+}
+.Order{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-content: center;
     background-color:#DCFFD7;
     border-radius:5px;
     padding:10px;
-    margin:20px;
-    width:1000px;
-    position: relative;
-    height:100px;
+    margin:auto;
+    max-width:1000px;
+    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.2);
 }
 .Order.Completed{
-    background-color:#E6E6E6;
+    background-color:#bebebe;
 }
 h3{
     font-weight:500;
-    color:#484848;
+    color:black;
 }
 .AppImage{
-    position:absolute;
-    right:0px;
-    top:-10px;
-    height:125%;
+    height:120px;
 }
 main{
     height:92vh;
@@ -172,6 +177,11 @@ hr{
 .router-link-exact-active.router-link-active{
     color:#41FF98;
 }
+@media screen and (max-width:550px){
+    /* .Order{
+        flex-direction:column;
+    } */
+}
 </style>
 <script>
 import axios from 'axios'
@@ -188,7 +198,30 @@ import axios from 'axios'
         HamburgerContent6:"FAQ SECTION",
         QuestionHeading:'Is there Anytype of shecdule provided? So I could Know how much work is pending',
         AnswerHeading:'Yes, Our team provides you a proper Shecdule Which includes specific ‘Checkpoints’.',
-        OrderArray:[],
+        OrderArray:[{
+            Completed:false,
+            Heading:"Mobile App (IN PROGRESS) 1/5 Completed",
+            Details:"View Details And Schedule",
+            Image:require("../assets/illustration/mobile.svg")
+        },
+        {
+            Completed:false,
+            Heading:"Desktop App (IN PROGRESS) 3/5 Completed",
+            Details:"View Details And Schedule",
+            Image:require("../assets/illustration/desktop2.svg")
+        },
+        {
+            Completed:false,
+            Heading:"Web App (Completed And Delivered On 19/04/20)",
+            Details:"View Details And Schedule",
+            Image:require("../assets/illustration/window.svg")
+        },
+        {
+            Completed:false,
+            Heading:"UI DESIGN For Web App (IN PROGRESS) 1/5 Completed",
+            Details:"View Details And Schedule",
+            Image:require("../assets/illustration/uiDesign.svg")
+        }],
 
      }
  },

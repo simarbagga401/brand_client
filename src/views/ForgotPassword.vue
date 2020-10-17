@@ -6,15 +6,15 @@
             <section class="HamburgerContent" v-show="HamburgerOpen">
             <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
             <hr >
-            <h1><router-link to="/HowItWorks" exact>{{HamburgerContent2}}</router-link></h1>
+            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
             <hr >
-            <h1><router-link to="/OurWork" exact>{{HamburgerContent3}}</router-link></h1>
+            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
             <hr >
-            <h1><router-link to="/Login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/SignUp" exact>{{HamburgerContent5}}</router-link>
+            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
+                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
             </h1>
             <hr >
-            <h1><router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link></h1>
+            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
         </section>
         <main v-show="!HamburgerOpen">
             <div class="ImageContainer"><img src="../assets/illustration/forgot.svg" alt="ILLUSTRATION_IMAGE" draggable="false"></div>
@@ -27,7 +27,7 @@
                 <button class="btn sign_up_btn">
                     <h3>Submit</h3>
                 </button>
-               <router-link to="/ContactUs" exact>Have Any Problem? Contact Us</router-link>
+               <router-link to="/contactUs" exact>Have Any Problem? Contact Us</router-link>
             </form>
 
         </main>
@@ -78,7 +78,7 @@ a{
 .Heading{
     position:absolute;
     right:10vw;
-    top:30px;
+    top:15vh;
     font-size:40px;
     color:white;
 }
@@ -185,9 +185,8 @@ main{
     left:50px;
 }
 form{
-    background-color:crimson;
     position:absolute;
-    top:100px;
+    top:25vh;
     right:10vw;
     height:480px;
     width:330px;
@@ -198,6 +197,7 @@ form{
     justify-content:space-between;
     padding:35px;
     background-color:#fff;
+    box-shadow:-3px 3px 7px rgba(0,0,0,0.3);
 }
 .InputContainer{
     background-color:none;
@@ -235,8 +235,12 @@ form{
 .sign_up_btn{
     background:#41FF98;
     font-family:'poppins',arial,helvetica,verdana,sans-serif;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
     color:white;
     margin-top:10px;
+}
+.sign_up_btn:focus{
+    background:#39C87A;
 }
 .google_btn,.instagram_btn{
     background:none;
@@ -285,12 +289,16 @@ form{
         justify-content:center;
     }
     .Heading{
-       position:absolute;
-       top:22%;
-       left:30%;
-       transform: translate(-10%, -100%);
+        font-size:35px;
+        left:10vw;
+        top:15vh;
     }
 
+}
+@media screen and (max-width:340px){
+    .Heading{
+         font-size:25px;
+    }
 }
 @media screen and (max-width:360px){
     form{

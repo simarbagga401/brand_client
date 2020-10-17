@@ -1,5 +1,5 @@
 <template>
-  <section id="FAQ">
+  <section id="AdminConsole">
     <nav>
       <div
         class="HamburgerContainer"
@@ -16,23 +16,24 @@
       </h1>
       <hr />
       <h1>
-        <router-link to="/HowItWorks" exact>{{HamburgerContent2}}</router-link>
+        <router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link>
       </h1>
       <hr />
       <h1>
-        <router-link to="/OurWork" exact>{{HamburgerContent3}}</router-link>
+        <router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link>
       </h1>
       <hr />
       <h1>
-        <router-link to="/Login" exact>{{HamburgerContent4}}</router-link>
-        <router-link to="/SignUp" exact>{{HamburgerContent5}}</router-link>
+        <router-link to="/login" exact>{{HamburgerContent4}}</router-link>
+        <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
       </h1>
       <hr />
       <h1>
-        <router-link to="/FAQ" exact>{{HamburgerContent6}}</router-link>
+        <router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link>
       </h1>
 </section>
       <main v-show="!HamburgerOpen">
+        <div class="div1">
      <div class="Container FaqContainer">
         <input type="text" class="FaqId" v-model="ModifyFaq._id"/>
         <button class="DeleteFaq" @click="DeleteFaq()">Delete A FAQ</button>
@@ -119,15 +120,73 @@
           <label for="BoxColor">Select BoxColor</label>
           <input type="text" id="BoxColor" v-model="GenerateOurWork.BoxColor"/>
         </div>
+        </div>
+        <div class="ContactUs">
+            <h2>Messages:</h2>
+          <template v-for="Message in Messages" >
+            <div :key="Message._id" class="Message">
+               <span class="NameSpan">
+              Name:
+            </span>
+              <h4 class="NameHeading">{{Message.Name}}</h4>
+            <span class="NameSpan">
+              Email:
+            </span>
+              <h4 class="NameHeading">{{Message.Email}}</h4>
+            <span class="MessageSpan">
+              Message:
+            </span>
+              <p class="MessageHeading">{{Message.Message}}</p>
+            </div>
+          </template>
+        </div>
     </main> 
   </section>
 </template>
 <style scoped>
+.NameHeading{
+    margin:5px;
+}
+.MessageSpan{
+    color:#FF7777;
+    font-weight:500;
+}
+.NameSpan{
+    color:#41FF98;
+    font-weight:500;
+}
+.Message{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    background-color:#DCFFD7;
+    border-radius:5px;
+    padding:20px;
+    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.2);
+    margin:20px 15px 0px 15px;
+    max-width:650px;
+}
+span{
+    margin:5px;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: poppins;
+}
+.div1{
+   display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+}
+.ContactUs{
+  width:70vw;
+  min-width:600px;
+  min-height:600px;
+  height:90vh;
+  background: rgb(255, 255, 255);
+  margin-right:10px;
 }
 nav {
   width: 100%;
@@ -140,8 +199,8 @@ main {
   height: 92vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items:flex-start;
 }
 .Container{
     flex-basis:200px;
@@ -154,7 +213,7 @@ main {
     background-color:#41FF98;
     margin:20px;
     border-radius:10px;
-    box-shadow:1px 0px 10px rgba(0,0,0,0.3);
+    box-shadow:0px 0px 10px rgba(0,0,0,0.3);
 }
 input{
     padding:7px;
@@ -319,7 +378,45 @@ export default {
            Description:"",
            ContainerColor:"",
            BoxColor:""
-      }
+      },
+      Messages:[
+        { 
+          _id:'1',
+          Name:'john doe',
+          Email:'john@gmail.com',
+          Message:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?'
+        },
+        { 
+          _id:'2',
+          Name:'john doe',
+          Email:'john@gmail.com',
+          Message:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?'
+        },
+        { 
+          _id:'1',
+          Name:'john doe',
+          Email:'john@gmail.com',
+          Message:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?'
+        },
+        { 
+          _id:'1',
+          Name:'john doe',
+          Email:'john@gmail.com',
+          Message:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?'
+        },
+        { 
+          _id:'1',
+          Name:'john doe',
+          Email:'john@gmail.com',
+          Message:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?'
+        },
+        { 
+          _id:'1',
+          Name:'john doe',
+          Email:'john@gmail.com',
+          Message:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis similique corrupti, est sint quidem corporis?'
+        },
+      ]
     };
   },
   methods: {
