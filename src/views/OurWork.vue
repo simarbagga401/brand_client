@@ -24,16 +24,16 @@
             <section class="WorkSection WorkSection1" v-for="AppContent in AppContents" :key="AppContent._id">
                 <div class="WorkContainer" :style="AppContent.ContainerColor">
                     <div class="Work Work1" :class="{Mobile:AppContent.Mobile,Desktop:AppContent.Desktop}">
-                        <img :src="AppContent.Image1" alt="Image1" type="image/svg+xml" draggable="false">
+                        <img :src="AppContent.Image1" alt="Image1" type="image/svg+xml" draggable="false"  ondragstart="return false;">
                     </div>
                     <div class="Work Work2" :class="{Mobile:AppContent.Mobile,Desktop:AppContent.Desktop}">
-                        <img :src="AppContent.Image2" alt="Image2" type="image/svg+xml" draggable="false">
+                        <img :src="AppContent.Image2" alt="Image2" type="image/svg+xml" draggable="false"  ondragstart="return false;">
                     </div>
                     <div class="Work Work3" :class="{Mobile:AppContent.Mobile,Desktop:AppContent.Desktop}">
-                        <img :src="AppContent.Image3" alt="Image3" type="image/svg+xml" draggable="false">
+                        <img :src="AppContent.Image3" alt="Image3" type="image/svg+xml" draggable="false"  ondragstart="return false;">
                     </div>
                     <div class="Work Work4" :class="{Mobile:AppContent.Mobile,Desktop:AppContent.Desktop}">
-                        <img :src="AppContent.Image4" alt="Image4" type="image/svg+xml" draggable="false">
+                        <img :src="AppContent.Image4" alt="Image4" type="image/svg+xml" draggable="false"  ondragstart="return false;">
                     </div>
                     <div class="WorkContent" :style="AppContent.BoxColor">
                         <h1 :style="AppContent.TextColor">{{AppContent.Heading}}</h1>
@@ -168,7 +168,9 @@ hr{
     height:80vh;
     position:relative;
     border-radius:10px;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+    box-shadow:
+    3px 2px 20px 0px rgba(0,0,0,0.1),
+    -3px 0px 20px 0px rgba(0,0,0,0.1);
 }
 .Work1{
     width:380px;
@@ -235,7 +237,7 @@ hr{
 .Work{
     position:absolute;
     border-radius:7px;
-    box-shadow:-3px 3px 7px rgba(0,0,0,0.3);
+    box-shadow:-5px 5px 10px rgba(0,0,0,0.3);
 }
 .Work img{
     border-radius:7px;

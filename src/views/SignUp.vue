@@ -17,12 +17,12 @@
             <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
         </section>
         <main v-show="!HamburgerOpen">
-            <div class="ImageContainer"><img src="../assets/illustration/sign.svg" alt="ILLUSTRATION_IMAGE" draggable="false"></div>
+            <div class="ImageContainer"><img src="../assets/illustration/sign.svg" alt="ILLUSTRATION_IMAGE" draggable="false"  ondragstart="return false;"></div>
             <h1 class="Heading">{{HeadingContent}}</h1>
             <form >
-                <div class="InputContainer UsernameContainer"><img src="../assets/icons/person.svg" alt="" draggable="false"><input type="text"     placeholder="Username" required="true"></div>
-                <div class="InputContainer EmailContainer"><img src="../assets/icons/email.svg" alt="" draggable="false"><input type="email"        placeholder="Email Id" required="true"></div>
-                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"><input type="password"    placeholder="Password" required="true"></div>
+                <div class="InputContainer UsernameContainer"><img src="../assets/icons/person.svg" alt="" draggable="false"  ondragstart="return false;"><input type="text"     placeholder="Username" required="true"></div>
+                <div class="InputContainer EmailContainer"><img src="../assets/icons/email.svg" alt="" draggable="false"  ondragstart="return false;"><input type="email"        placeholder="Email Id" required="true"></div>
+                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"  ondragstart="return false;"><input type="password"    placeholder="Password" required="true"></div>
                 <button class="btn sign_up_btn">
                     <h3>SIGN UP</h3>
                 </button>

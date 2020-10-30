@@ -41,7 +41,11 @@ export default {
         -webkit-font-smoothing: auto;
         -moz-osx-font-smoothing:auto;
         font-smooth:2em;
-        user-select: none;
+         user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
       }
        a{
         text-decoration:none;

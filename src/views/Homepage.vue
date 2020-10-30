@@ -33,7 +33,7 @@
      <section class="Image" >       
             <Carousel  >
                 <CarouselSlider v-for="(image,index) in ImageArray" :key="image.image" :index="index" :visibleSlide="visibleSlide" :direction="direction">
-                    <img :src="image.image" alt="Image"  draggable="false"/>
+                    <img :src="image.image" alt="Image"  draggable="false"  ondragstart="return false;"/>
                 </CarouselSlider>
             </Carousel>
     </section> 
@@ -56,7 +56,7 @@
                 </Carousel>
             </div>
 
-                        <router-link to="/Services" exact  class="cta" action="/Services">Get Started</router-link>
+                        <router-link to="/services" exact  class="cta">Get Started</router-link>
             </section>
              </main>
        <div class="btns">
@@ -177,9 +177,6 @@ mounted(){
         this.visited = 3;
       }
     },8000)
-      setInterval(() =>{
-      // console.log(this.visited+'  '+this.visibleSlide)
-      },1000)
 },
 methods:{
     SliderFunction1(){
@@ -410,8 +407,7 @@ hr{
     height:150px;
     display:flex;
     justify-content:center;
-    background:none;
-    padding:5px;
+    padding:12px 5px 5px 5px;
 }
 .Image{
     position:relative;
@@ -462,7 +458,6 @@ main{
         width:75vw;
         align-items:center;
         align-self:center;
-        background-color:none;
     }
     .Image{
         order:1;
@@ -475,6 +470,12 @@ main{
         background-color:none;
         width:75vw;
         height:70px;
+    }
+    .Heading{
+        font-size:28px;
+    }
+    .Description{
+        font-size:17px;
     }
     .btns{
         left:40vw;

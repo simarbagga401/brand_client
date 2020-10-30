@@ -162,6 +162,9 @@ export default {
 </script>
 
 <style scoped>
+.FAQSection{
+    background: rgb(233, 233, 233);
+}
 *{
     margin:0;
     padding:0;
@@ -277,7 +280,7 @@ hr{
 .InputContainer{
     width:90vw;
     max-width:800px;
-    height:140px;
+    height:155px;
     position:fixed;
     bottom:10px;
     left:20px;
@@ -299,7 +302,7 @@ hr{
     height:40px;
     padding:10px;
     border:none;
-    background-color:#DCFFD7;
+    background-color:#C5FFE2;
     border-radius:5px;
     resize:none;
     transition:all .5s ease-out;
@@ -333,11 +336,12 @@ hr{
     display:flex;
     flex-direction:column;
     justify-content:space-evenly;
-    background-color:#DCFFD7;
-    border-radius:5px;
+    background-color:#C5FFE2;
     padding:20px;
-    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.2);
-    margin:20px 15px 0px 15px;
+    box-shadow: 
+    3px 2px 20px 0px rgba(0,0,0,0.1),
+    -3px 0px 20px 0px rgba(0,0,0,0.1);
+    margin:20px;
     max-width:650px;
 }
 

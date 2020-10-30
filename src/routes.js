@@ -1,15 +1,4 @@
 import Home from './views/Homepage.vue'
-import Login from './views/Login.vue'
-import SignUp from './views/SignUp.vue'
-import ForgotPassword from './views/ForgotPassword.vue'
-import OurWork from './views/OurWork.vue'
-import FAQ from './views/FAQ.vue'
-import HowItWorks from './views/HowItWorks.vue'
-import ContactUs from './views/ContactUs.vue'
-import Orders from './views/Orders.vue'
-import Admin from './views/Admin.vue'
-import Services from './views/Services.vue'
-import ServiceForm from './views/ServiceForm.vue'
 
 
 
@@ -24,57 +13,86 @@ export default[
 {
 	path:'/login',
 	name:'Login',
-	component:Login
+	component: () => import(/*webpackChunkName:"login" */'./views/Login.vue')
 },
 {
 	path:'/signUP',
 	name:'SignUP',
-	component:SignUp
+	component: () => import(/*webpackChunkName:"signup" */'./views/SignUp.vue')
+
 },
 {
 	path:'/forgotPassword',
 	name:'ForgotPassword',
-	component:ForgotPassword
+	component: () => import(/*webpackChunkName:"forgotpassword" */'./views/ForgotPassword.vue')
+
 },
 {
 	path:'/ourWork',
 	name:'OurWork',
-	component:OurWork
+	component: () => import(/*webpackChunkName:"ourwork" */'./views/OurWork.vue')
+
 },
 {
 	path:'/fAQ',
 	name:'FAQ',
-	component:FAQ
+	component: () => import(/*webpackChunkName:"faq" */'./views/FAQ.vue')
+
 },
 {
 	path:'/howItWorks',
 	name:'HowItWorks',
-	component:HowItWorks
+	component: () => import(/*webpackChunkName:"howitworks" */'./views/HowItWorks.vue')
+
 },
 {
 	path:'/contactUs',
 	name:'ContactUs',
-	component:ContactUs
+	component: () => import(/*webpackChunkName:"contactus" */'./views/ContactUs.vue')
+
 },
 {
 	path:'/orders',
 	name:'Orders',
-	component:Orders
+	component: () => import(/*webpackChunkName:"orders" */'./views/Orders.vue')
+
 },
 {
 	path:'/admin',
 	name:'Admin',
-	component:Admin
+	component: () => import(/*webpackChunkName:"admin" */'./views/Admin.vue')
+
 },
 {
 	path:'/services',
 	name:'Services',
-	component:Services
+	component: () => import(/*webpackChunkName:"services" */'./views/Services.vue')
+
 },
 {
-	path:'/serviceForm',
-	name:'ServiceForm',
-	component:ServiceForm
-}
+	path:'/services/webDevelopment',
+	name:'WebDevelopment',
+	component: () => import(/*webpackChunkName:"webdevelopment" */'./views/WebDevelopment.vue')
+
+},
+{
+	path:'/services/desktopAppDevelopment',
+	name:'DesktopAppDevelopment',
+	component: () => import(/*webpackChunkName:"desktopappdevelopment" */'./views/DesktopAppDevelopment.vue')
+
+},
+{
+	path:'/services/mobileAppDevelopment',
+	name:'MobileAppDevelopment',
+	component: () => import(/*webpackChunkName:"mobileappdevelopment" */'./views/MobileAppDevelopment.vue')
+
+},
+{
+	path:'/services/uiDesign',
+	name:'UiDesign',
+	component: () => import(/*webpackChunkName:"uidesign" */'./views/UiDesign.vue')
+
+},
+
 ];
 

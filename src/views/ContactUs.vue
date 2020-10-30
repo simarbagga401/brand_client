@@ -48,7 +48,7 @@
             <div class="SocialMedia Youtube"></div>
             </div>
         </div>
-        <img src="../assets/illustration/Contact.svg" class="contact_us_svg" draggable="false">
+        <img src="../assets/illustration/Contact.svg" class="contact_us_svg" draggable="false"  ondragstart="return false;">
     </main>
 </section>
 </template>

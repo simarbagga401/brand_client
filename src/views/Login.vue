@@ -20,8 +20,8 @@
             <div class="ImageContainer"><img src="../assets/illustration/log.svg" alt="ILLUSTRATION_IMAGE" draggable="false"></div>
             <h1 class="Heading">{{HeadingContent}}</h1>
             <form >
-                <div class="InputContainer UsernameContainer"><img src="../assets/icons/person.svg" alt="" draggable="false"><input type="text"     placeholder="Username" required="true"></div>
-                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"><input type="password"    placeholder="Password" required="true"></div>
+                <div class="InputContainer UsernameContainer"><img src="../assets/icons/person.svg" alt="" draggable="false"  ondragstart="return false;"><input type="text"     placeholder="Username" required="true"></div>
+                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"  ondragstart="return false;"><input type="password"    placeholder="Password" required="true"></div>
                 <button class="btn sign_up_btn">
                     <h3>Login</h3>
                 </button>

@@ -122,9 +122,9 @@
         </div>
         </div>
         <div class="ContactUs">
-            <h2>Messages:</h2>
+            <h2 @click="Switch = !Switch">{{toggle}}</h2>
           <template v-for="Message in Messages" >
-            <div :key="Message._id" class="Message">
+            <div :key="Message._id" class="Message" v-show="Switch">
                <span class="NameSpan">
               Name:
             </span>
@@ -137,6 +137,22 @@
               Message:
             </span>
               <p class="MessageHeading">{{Message.Message}}</p>
+            </div>
+          </template>
+           <template v-for="Order in Orders" >
+            <div :key="Order._id" class="Message" v-show="!Switch">
+               <!-- <span class="NameSpan">
+              Name:
+            </span>
+              <h4 class="NameHeading">{{Message.Name}}</h4>
+            <span class="NameSpan">
+              Email:
+            </span>
+              <h4 class="NameHeading">{{Message.Email}}</h4>
+            <span class="MessageSpan">
+              Message:
+            </span>
+              <p class="MessageHeading">{{Message.Message}}</p> -->
             </div>
           </template>
         </div>
@@ -201,6 +217,9 @@ main {
   display: flex;
   flex-direction: row;
   align-items:flex-start;
+}
+h4{
+  font-weight: 500;
 }
 .Container{
     flex-basis:200px;
@@ -341,6 +360,7 @@ export default {
       ModifyOrderInfo: false,
       ModifyFaqInfo: false,
       GenerateOurWorkInfo: false,
+      Switch:false,
       ModifyFaq:{
           _id:"",
           Answered:"",
@@ -379,6 +399,7 @@ export default {
            ContainerColor:"",
            BoxColor:""
       },
+      Orders:[],
       Messages:[
         { 
           _id:'1',
@@ -451,6 +472,13 @@ export default {
         open: this.HamburgerOpen,
       };
     },
+    toggle:function(){ 
+        if(this.Switch){
+          return 'Messages';
+        }else{
+          return 'Orders'
+        }
+    }
   }
 };
 </script>

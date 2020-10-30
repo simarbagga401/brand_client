@@ -23,7 +23,7 @@
     <main v-show="!HamburgerOpen">
         <template v-for="Order in OrderArray" >
             <div class="Order" :class="{Completed:Order.Completed}"  :key="Order._id">
-                <img :src="Order.Image" class="AppImage" alt="Image" draggable="false">
+                <img :src="Order.Image" class="AppImage" alt="Image" draggable="false"  ondragstart="return false;">
                 <div class="div1">
                 <h3 class="OrderHeading">{{Order.Heading}}</h3>
                 <router-link to="/orders/order" class="OrderDetails">{{Order.Details}}</router-link>
@@ -60,18 +60,20 @@ nav{
     flex-direction:column;
     justify-content:space-evenly;
     align-items:flex-start;
+    margin:10px;
 }
 .Order{
     display:flex;
     flex-direction:row;
     justify-content:space-between;
     align-content: center;
-    background-color:#DCFFD7;
-    border-radius:5px;
+    background-color:#C5FFE2;
     padding:10px;
-    margin:auto;
+    margin:20px;
     max-width:1000px;
-    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.2);
+    box-shadow: 
+    3px 2px 20px 0px rgba(0,0,0,0.1),
+    -3px 0px 20px 0px rgba(0,0,0,0.1);
 }
 .Order.Completed{
     background-color:#bebebe;
@@ -178,9 +180,9 @@ hr{
     color:#41FF98;
 }
 @media screen and (max-width:550px){
-    /* .Order{
+    .Order{
         flex-direction:column;
-    } */
+    }
 }
 </style>
 <script>
@@ -215,6 +217,24 @@ import axios from 'axios'
             Heading:"Web App (Completed And Delivered On 19/04/20)",
             Details:"View Details And Schedule",
             Image:require("../assets/illustration/window.svg")
+        },
+        {
+            Completed:false,
+            Heading:"UI DESIGN For Web App (IN PROGRESS) 1/5 Completed",
+            Details:"View Details And Schedule",
+            Image:require("../assets/illustration/uiDesign.svg")
+        },
+        {
+            Completed:false,
+            Heading:"UI DESIGN For Web App (IN PROGRESS) 1/5 Completed",
+            Details:"View Details And Schedule",
+            Image:require("../assets/illustration/uiDesign.svg")
+        },
+        {
+            Completed:false,
+            Heading:"UI DESIGN For Web App (IN PROGRESS) 1/5 Completed",
+            Details:"View Details And Schedule",
+            Image:require("../assets/illustration/uiDesign.svg")
         },
         {
             Completed:false,

@@ -20,8 +20,8 @@
             <div class="ImageContainer"><img src="../assets/illustration/forgot.svg" alt="ILLUSTRATION_IMAGE" draggable="false"></div>
             <h1 class="Heading">{{HeadingContent}}</h1>
             <form >
-               <div class="InputContainer EmailContainer"><img src="../assets/icons/email.svg" alt="" draggable="false"><input type="email"        placeholder="Email Id" required="true"></div>
-                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"><input type="password"    placeholder="Verification-Code" required="true"></div>
+               <div class="InputContainer EmailContainer"><img src="../assets/icons/email.svg" alt="" draggable="false"  ondragstart="return false;"><input type="email"        placeholder="Email Id" required="true"></div>
+                <div class="InputContainer PasswordContainer"><img src="../assets/icons/pin.svg" alt="" draggable="false"  ondragstart="return false;"><input type="password"    placeholder="Verification-Code" required="true"></div>
                 <h3 class="Verification">{{VerificationContent}}</h3>
                 <a>Resend Code in {{time}}</a>
                 <button class="btn sign_up_btn">
