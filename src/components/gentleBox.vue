@@ -1,7 +1,7 @@
 <template>
     <section id="gentleBox">
         <div class="container">
-            <h2><img src="../assets/icons/tick.svg" alt="image">{{heading}}</h2>
+            <h2><img src="../assets/icons/tick.svg">{{heading}}</h2>
             <div class="textContainer">
                 <p>{{description}}</p>
             </div>

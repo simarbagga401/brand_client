@@ -1,7 +1,7 @@
 <template>
     <div class="btnContainer" >
-        <button class="btn" @click="changeAdvance()" :class="{rotate:this.advance}">
-            <img :src="image" alt="BACK">
+        <button class="btn" :class="{rotate:this.advance}">
+            <img :src="image" alt="BACK" draggable="false" ondragstart="return false;">
         </button>
     </div>
 </template>
@@ -14,21 +14,14 @@
 
             }
         },
-        methods:{
-            changeAdvance(){
-                let advance = this.advance;
-                advance = !advance;
-                this.$emit('updatedAdvance',advance);
-            }
-        }
     }
 </script>
 
 <style scoped>
 
 .btn{
-    width:50px;
-    height:50px;
+    width:55px;
+    height:55px;
     background: rgb(255, 255, 255);
     border-radius:50%;
     padding:9px;
@@ -40,8 +33,8 @@
 .btn:hover,.btn:active{
     background: #41FF98;
     box-shadow:0px 0px 1px 0px #41FF98;
-    width:50px;
-    height:50px;
+    width:60px;
+    height:60px;
 }
 .btn:focus,.btn:active{
     outline:none;

@@ -1,21 +1,9 @@
 <template>
   <section id="Login">
-        <div class="HamburgerContainer" :class="BurgerFunction" @click="HamburgerOpen = !HamburgerOpen">
-    <div class="Hamburger"></div>
-        </div>   
-            <section class="HamburgerContent" v-show="HamburgerOpen">
-            <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
-            </h1>
-            <hr >
-            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
-        </section>
+      <nav>
+        <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
+      </nav>
+       <hamburgerContentWhite :hamburgerOpen="HamburgerOpen" />
         <main v-show="!HamburgerOpen">
             <div class="ImageContainer"><img src="../assets/illustration/forgot.svg" alt="ILLUSTRATION_IMAGE" draggable="false"></div>
             <h1 class="Heading">{{HeadingContent}}</h1>
@@ -35,30 +23,23 @@
 </template>
 
 <script>
-
+import hamburger from '../components/hamburger.vue';
+import hamburgerContentWhite from '../components/hamburgerContentWhite.vue';
 export default {
+    
 data(){
     return{
     HamburgerOpen:false,
-        HamburgerContent1:"HOME",
-        HamburgerContent2:"HOW IT WORKS ?",
-        HamburgerContent3:"OUR WORK",
-        HamburgerContent4:"LOG IN / ",
-        HamburgerContent5:"SIGN UP",
-        HamburgerContent6:"FAQ SECTION",
         HeadingContent:'ForgotPassword?',
         VerificationContent:'You Will Recieve A Verification Code On Mentioned Email ID.',
         time:'2.5s'
 
     }
 },
-  computed:{
-    BurgerFunction:function(){
-        return{
-            open:this.HamburgerOpen
+        components:{
+            hamburger,
+            hamburgerContentWhite
         }
-    },
-  }
 }
 </script>
 
@@ -68,6 +49,13 @@ data(){
     padding:0;
     box-sizing:border-box;
     font-family:poppins;
+}
+nav{
+    width:100%;
+    height:8vh;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
 }
 a{
 	color:blue;
@@ -88,89 +76,6 @@ a{
     background: url(../assets/illustration/background.svg) #254433;
     background-size:650px;
     background-repeat:no-repeat;
-}
-.HamburgerContainer{
-    width:35px;
-    height:30px;
-    margin-left:1vw;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    position:relative;
-    top:15px;
-    left:10px;
-}
-.Hamburger{
-    width:25px;
-    height:3px;
-    background:white;
-    border-radius:20%;
-    transition:all 0.2s ease-in-out;
-}
-.Hamburger::before,.Hamburger::after{
-    position:absolute;
-    content:'';
-    width:25px;
-    height:3px;
-    background:white;
-    border-radius:20%;
-    transition:all 0.5s ease-in-out;
-}
-.Hamburger::before{
-    transform:translateY(-7px);
-}
-.Hamburger::after{
-    transform:translateY(7px);
-}
-.HamburgerContainer.open .Hamburger{
-    transform:translateX(-5px);
-    background:none;
-}
-.HamburgerContainer.open .Hamburger::before{
-    transform:rotate(45deg);
-}
-.HamburgerContainer.open .Hamburger::after{
-    transform:rotate(-45deg);
-}
-.HamburgerContent{
-    height:30vh;
-    background-color:none;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-evenly;
-    position:absolute;
-    top:60px;
-    user-select:none;
-}
-.HamburgerContent h1{
-    font-weight:400;
-    margin-left:20px;
-    animation:HamburgerAnimation 0.7s ease-out;
-}
-@keyframes HamburgerAnimation{
-    0%{
-        margin-left:0px;
-    }
-    50%{
-        margin-left:25px;
-    }
-    100%{
-        margin-left:20px;
-    }
-}
-.HamburgerContent h1 a{
-   text-decoration:none;
-   font-family:'poppins',sans-serif,helvetica,arial;
-   color:black;
-   cursor:pointer;
-}
-hr{
-    width:90vw;
-    border:1px solid #f2f2f2;
-}
-.router-link-exact-active.router-link-active{
-    color:white;
 }
 main{
     background-color:none;

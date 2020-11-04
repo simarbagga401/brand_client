@@ -1,39 +1,40 @@
 <template>
-  <section id="FAQ">
+  <section>
       <nav>
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
       </nav>
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
-        <main v-show="!HamburgerOpen">
+        <main>
 
         </main>
   </section>
 </template>
 
 <script>
-import hamburger from '../components/hamburger.vue';
-import hamburgerContent from '../components/hamburgerContent.vue';
-export default {
-  data(){
-    return{
-        HamburgerOpen:false,
-        Heading:'How It Works?'
-    }
-  },
+import hamburger from '../../components/hamburger.vue';
+import hamburgerContent from '../../components/hamburgerContent.vue';
+    export default {
+        data(){
+            return{
+                Heading:'Mobile App Development',
+                HamburgerOpen:false,
+            }
+        },
         components:{
             hamburger, 
             hamburgerContent
         }
-}
+    }
 </script>
 
-<style scoped>
+<style  scoped>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:poppins;
 }
+
 nav{
     width:100%;
     height:8vh;
@@ -44,7 +45,9 @@ nav{
 main{
     height:92vh;
     width:100vw;
-
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 .Heading{
     font-weight:700;
@@ -52,4 +55,5 @@ main{
     margin-left:30px;
     user-select:none;
 }
+
 </style>

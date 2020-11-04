@@ -1,34 +1,9 @@
 <template>
-  <section class="APPLICATION" :class="BurgerFunction">
-<nav>
-        <div class="HamburgerContainer" :class="BurgerFunction" @click="HamburgerOpen = !HamburgerOpen">
-    <div class="Hamburger">
-    </div>
-        </div>    
-    <h3 class="BrandName">{{BrandName}}</h3>
-    <ul>
-        <li class="List1"><router-link to="/signUp" exact>SIGN UP</router-link ></li>
-        <li class="List2"><router-link to="/login" exact> LOG IN</router-link ></li>
-    </ul>
-        <div class="CartContainer">
-          <router-link to="/orders" > <img src="../assets/icons/cart.svg" alt="Cart" type="image/svg+xml"  draggable="false">  </router-link>
-        </div>
-</nav>  
-        <!-- NAVBAR OVER  -->
-        <section class="HamburgerContent" v-show="HamburgerOpen">
-            <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
-            <hr >
-            <h1>
-                <router-link to="/login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
-            </h1>
-            <hr >
-            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
-        </section>
+  <section class="APPLICATION">
+      <nav>
+        <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
+      </nav>
+       <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main v-show='!HamburgerOpen'>
      <section class="Image" >       
             <Carousel  >
@@ -71,18 +46,14 @@
 <script>
 import Carousel from '../components/Carousel.vue'
 import CarouselSlider from '../components/CarouselSlider.vue'
-// import CarouselSlider2 from '../components/CarouselSliderTwo.vue'
+import hamburger from '../components/hamburger.vue';
+import hamburgerContent from '../components/hamburgerContent.vue';
 
 
 
 
 export default {
     computed:{
-    BurgerFunction:function(){
-        return{
-            open:this.HamburgerOpen
-        }
-    },
     GlowClass1:function(){
         return{
             glow:this.Glow1
@@ -124,12 +95,6 @@ data(){
         Glow2:false,
         Glow3:false,
         Glow4:false,
-        HamburgerContent1:"HOME",
-        HamburgerContent2:"HOW IT WORKS ?",
-        HamburgerContent3:"OUR WORK",
-        HamburgerContent4:"LOG IN / ",
-        HamburgerContent5:"SIGN UP",
-        HamburgerContent6:"FAQ SECTION",
         visibleSlide:0,
         direction:'left',
         visited:0
@@ -138,7 +103,8 @@ data(){
 components:{
     Carousel,
     CarouselSlider,
-    // CarouselSlider2
+    hamburger, 
+     hamburgerContent
 
 },
 mounted(){
@@ -248,9 +214,7 @@ ul li a {
     margin:7px;
     font-size:14px;
 }
-.router-link-exact-active.router-link-active{
-    color:#41FF98;
-}
+
 .BrandName{
     position:absolute;
     margin-left:60px;
@@ -265,84 +229,9 @@ ul li a {
     border-radius:5px;
     cursor:pointer;
 }
-
 .CartContainer:hover{
     background-color:#41FF98;
     box-shadow: 0px 0px 4px 0px rgb(65, 255, 152);
-}
-.HamburgerContainer{
-    width:35px;
-    height:30px;
-    margin-left:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-}
-.Hamburger{
-    width:25px;
-    height:3px;
-    background:black;
-    border-radius:20%;
-    transition:all 0.2s ease-in-out;
-}
-.Hamburger::before,.Hamburger::after{
-    position:absolute;
-    content:'';
-    width:25px;
-    height:3px;
-    background:black;
-    border-radius:20%;
-    transition:all 0.5s ease-in-out;
-}
-.Hamburger::before{
-    transform:translateY(-7px);
-}
-.Hamburger::after{
-    transform:translateY(7px);
-}
-.HamburgerContainer.open .Hamburger{
-    transform:translateX(-5px);
-    background:none;
-}
-.HamburgerContainer.open .Hamburger::before{
-    transform:rotate(45deg);
-}
-.HamburgerContainer.open .Hamburger::after{
-    transform:rotate(-45deg);
-}
-.HamburgerContent{
-    height:30vh;
-    background-color:none;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-evenly;
-    user-select:none;
-}
-.HamburgerContent h1{
-    font-weight:400;
-    margin-left:20px;
-    animation:HamburgerAnimation 0.7s ease-out;
-}
-@keyframes HamburgerAnimation{
-    0%{
-        margin-left:0px;
-    }
-    50%{
-        margin-left:25px;
-    }
-    100%{
-        margin-left:20px;
-    }
-}
-.HamburgerContent h1 a{
-   text-decoration:none;
-   color:black;
-   cursor:pointer;
-}
-hr{
-    width:90vw;
-    border:1.5px solid #41FF98;
 }
 .cta{
     color:black;

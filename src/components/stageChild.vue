@@ -25,16 +25,17 @@
 <script>
 
     export default {
-        props:["showWarning"],
+        props:["showWarning","totalSize"],
         data(){
             return{
                 heading:"Design / Moqup",
                 description:"Choose UI Design Or We Will Do it For You.",
                 warning:this.showWarning,
-                fileSize:123 +'kb',
+                fileSize:1.2+'mb',
             }
         },
         components:{
+
         }
     }
 </script>
@@ -42,7 +43,7 @@
 <style scoped>
 .slotDiv{
     position:absolute;
-    left:-15px;
+    left:-20px;
     top:-20px;
 }
 span{
@@ -59,7 +60,7 @@ span{
     min-width:350px;
 }
 #container{ 
-     height:250px;
+     height:20vh;
      width:90vw;
      max-width:1200px;
      padding:10px;
@@ -70,7 +71,8 @@ span{
      -3px 0px 20px 0px rgba(0,0,0,0.1);
      border-radius:5px;   
      display:grid;
-     grid-template-rows:85% 15%;
+     grid-template-rows:80% 20%;
+     margin:40px 10px;
 }
 header{   
     display:grid;
@@ -95,7 +97,6 @@ main{
     padding:10px;
 }
 footer{
-    background: rgb(255, 200, 200);
     display: flex;
     justify-content:flex-end;
     align-items: center;
@@ -116,6 +117,19 @@ p{
     header{
         grid-template-columns:1fr;
         grid-template-rows:1fr 3fr;
+    }
+}
+@media screen and (max-width:500px){
+    .warningContainer{
+        min-width:300px;
+    }
+    .warningContainer p{
+        font-size:10px;
+    }
+}
+@media screen and (max-width:360px){
+    .warningContainer{
+        flex-direction:column;
     }
 }
 </style>

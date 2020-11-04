@@ -1,30 +1,14 @@
 <template>
   <section id="ContactUs">
-<nav>
-        <div class="HamburgerContainer" :class="BurgerFunction" @click="HamburgerOpen = !HamburgerOpen">
-    <div class="Hamburger">
-    </div>
-        </div>   
-          <h1 class="Heading">{{Heading}}</h1> 
-</nav>    
-            <section class="HamburgerContent" v-show="HamburgerOpen">
-            <h1><router-link to="/" exact>{{HamburgerContent1}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/howItWorks" exact>{{HamburgerContent2}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/ourWork" exact>{{HamburgerContent3}}</router-link></h1>
-            <hr >
-            <h1><router-link to="/login" exact>{{HamburgerContent4}}</router-link>
-                <router-link to="/signUp" exact>{{HamburgerContent5}}</router-link>
-            </h1>
-            <hr >
-            <h1><router-link to="/fAQ" exact>{{HamburgerContent6}}</router-link></h1>
-            </section>
+      <nav>
+        <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
+      </nav>
+       <hamburgerContent :hamburgerOpen="HamburgerOpen" />
     <main v-show="!HamburgerOpen">
         <section class="ContentSection" id="Section">
          <div class="ContentBox ContentBox1" @mousedown="fullScreen(1,2,3,4)">
                     <img src="../assets/illustration/tabs.svg" alt="Image" draggable="false" :class="{fullscreen:fullscreenImage}"  ondragstart="return false;">
-                     <div class="ContentContainer">
+                      <div class="ContentContainer">
                          <h3>Web Development</h3>
                          <p>Build Powerful And Beautiful Responise WebApps And Website</p>
                      </div>
@@ -132,6 +116,8 @@ nav{
     grid-template-rows:repeat(2,minmax(100px,1fr));
     grid-gap:10px;
     overflow: scroll;
+    scrollbar-width: none;
+
 }
 .ContentBox{
     background: rgb(82, 82, 82);
@@ -206,89 +192,8 @@ main{
     margin-left:30px;
     user-select:none;
 }
-.HamburgerContainer{
-    width:35px;
-    height:30px;
-    margin-left:1vw;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-}
-.Hamburger{
-    width:25px;
-    height:3px;
-    background:black;
-    border-radius:20%;
-    transition:all 0.2s ease-in-out;
-}
-.Hamburger::before,.Hamburger::after{
-    position:absolute;
-    content:'';
-    width:25px;
-    height:3px;
-    background:black;
-    border-radius:20%;
-    transition:all 0.5s ease-in-out;
-}
-.Hamburger::before{
-    transform:translateY(-7px);
-}
-.Hamburger::after{
-    transform:translateY(7px);
-}
-.HamburgerContainer.open .Hamburger{
-    transform:translateX(-5px);
-    background:none;
-}
-.HamburgerContainer.open .Hamburger::before{
-    transform:rotate(45deg);
-}
-.HamburgerContainer.open .Hamburger::after{
-    transform:rotate(-45deg);
-}
-.HamburgerContent{
-    height:30vh;
-    background-color:none;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-evenly;
-    position:absolute;
-    top:60px;
-    user-select:none;
-}
-.HamburgerContent h1{
-    font-weight:400;
-    margin-left:20px;
-    animation:HamburgerAnimation 0.7s ease-out;
-}
-@keyframes HamburgerAnimation{
-    0%{
-        margin-left:0px;
-    }
-    50%{
-        margin-left:25px;
-    }
-    100%{
-        margin-left:20px;
-    }
-}
-.HamburgerContent h1 a{
-   text-decoration:none;
-   font-family:'poppins',sans-serif,helvetica,arial;
-   color:black;
-   cursor:pointer;
-}
-hr{
-    width:90vw;
-    border:1.5px solid #41FF98;
-}
-.router-link-exact-active.router-link-active{
-    color:#41FF98;
-}
 img.fullscreen{
     width:250px;
-    /* align-self: flex-start; */
 }
 @media screen and (max-width:960px){
     .ContentSection{
@@ -311,17 +216,13 @@ img.fullscreen{
 </style>
 <script>
 import ctaBtn from '../components/cta_btn.vue';
-
+import hamburger from '../components/hamburger.vue';
+import hamburgerContent from '../components/hamburgerContent.vue';
   export default {
     data(){
      return{
         Heading:'Our Services',
         HamburgerOpen:false,
-        HamburgerContent1:"HOME",
-        HamburgerContent2:"HOW IT WORKS ?",
-        HamburgerContent3:"OUR WORK",
-        HamburgerContent4:"LOG IN / ",
-        HamburgerContent5:"SIGN UP",
         Design:false,
         Development:true,
         HamburgerContent6:"FAQ SECTION",
@@ -331,15 +232,10 @@ import ctaBtn from '../components/cta_btn.vue';
         link:['/services/webDevelopment','/services/mobileAppDevelopment','/services/desktopAppDevelopment','/services/uiDesign']
      }
  },
-  computed:{
-    BurgerFunction:function(){
-        return{
-            open:this.HamburgerOpen
-        }
-    },
-  },
   components:{
-      ctaBtn
+      ctaBtn,
+      hamburger,
+    hamburgerContent
   },
   methods:{
       fullScreen(main,one,two,three){

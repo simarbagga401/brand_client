@@ -4,11 +4,9 @@
             <div class="selectContainer">
                 <h1 class="selectHeading">{{heading}}</h1>
                 <select name="selectBox" id="selectBox" v-model="techModel">
-                    <option>{{options[0]}}</option>
-                    <option>{{options[1]}}</option>
-                    <option v-if="third">{{options[2]}}</option>
+                    <option v-for="option in options" :key="option">{{option}}</option>
                 </select>
-                    <img src="../assets/icons/arrow_new_back.svg" alt="^" draggable="false" ondragstart="return false;" class="selectImage">
+                    <img src="../assets/icons/arrow_new_back.svg" alt="←" draggable="false" ondragstart="return false;" class="selectImage">
             </div>
             <div class="textContainer">
                 <p>{{description}}</p>
@@ -16,13 +14,13 @@
                     <img :src="image" :class="{smallImage:this.smallImage}" draggable="false" ondragstart="return false;" :style="style"> <span v-if="showSass">+</span> <img src="../assets/logo/sass.svg" v-if="showSass" draggable="false" ondragstart="return false;"> <span v-if="showTypescript">+</span> <img src="../assets/logo/typescript.svg" v-if="showTypescript" draggable="false" ondragstart="return false;">
                 </div>
             </div>
-        </div>
+        </div>  
     </section>
 </template>
 
 <script>
     export default {
-        props:["options","default","third"],
+        props:["options","default"],
         data(){
             return{
                 techModel:this.default,
@@ -94,6 +92,7 @@
                          this.style = "width:85px" 
                         break;            
                 }
+                // console.log(this.techModel)
             },
         },
         mounted(){

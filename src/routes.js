@@ -72,25 +72,25 @@ export default[
 {
 	path:'/services/webDevelopment',
 	name:'WebDevelopment',
-	component: () => import(/*webpackChunkName:"webdevelopment" */'./views/WebDevelopment.vue')
+	component: () => import(/*webpackChunkName:"webdevelopment" */'./views/nestedViews/WebDevelopment.vue')
 
 },
 {
 	path:'/services/desktopAppDevelopment',
 	name:'DesktopAppDevelopment',
-	component: () => import(/*webpackChunkName:"desktopappdevelopment" */'./views/DesktopAppDevelopment.vue')
+	component: () => import(/*webpackChunkName:"desktopappdevelopment" */'./views/nestedViews/DesktopAppDevelopment.vue')
 
 },
 {
 	path:'/services/mobileAppDevelopment',
 	name:'MobileAppDevelopment',
-	component: () => import(/*webpackChunkName:"mobileappdevelopment" */'./views/MobileAppDevelopment.vue')
+	component: () => import(/*webpackChunkName:"mobileappdevelopment" */'./views/nestedViews/MobileAppDevelopment.vue')
 
 },
 {
 	path:'/services/uiDesign',
 	name:'UiDesign',
-	component: () => import(/*webpackChunkName:"uidesign" */'./views/UiDesign.vue')
+	component: () => import(/*webpackChunkName:"uidesign" */'./views/nestedViews/UiDesign.vue')
 
 },
 
