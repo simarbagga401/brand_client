@@ -4,10 +4,23 @@
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
         <h3 class="BrandName">Bruh.</h3>
         <ul>
-            <li><a href="" to="/login" exact class="List1">Orders</a></li>
-            <li><router-link to="/orders" exact  href="" class="List2">Login</router-link></li>
+            <li><router-link to="/login" exact  class="List2">Login</router-link></li>
+            <li><router-link to="/signUp" exact  class="List2">Sign Up</router-link></li>
+            <li @mouseleave="showDropdownFunction(false)" @mouseover="showDropdownFunction(true)" @click="showDropdownFunction('toogle')" @blur="showDropdownFunction(false)"><router-link  to="" exact class="List1">More &#709;</router-link></li>
         </ul>
+        <div class="CartContainer">
+            <router-link to="/orders" exact>
+                <img src="../assets/icons/cart.svg" alt="">
+            </router-link>
+        </div>
       </nav>
+      <!-- dropdown -->
+                    <div class="dropdown" :class="{hide:!showDropdown}"  @mouseover="showDropdownFunction(true)" @mouseleave="showDropdownFunction(false)">
+                        <router-link to="/contactUs" exact>Contact Us</router-link>
+                        <hr >
+                        <a>Contribute</a>
+                    </div>
+      <!-- dropdown -->
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main v-show='!HamburgerOpen'>
      <section class="Image" >       
@@ -95,6 +108,7 @@ data(){
                     {image:require("../assets/illustration/desktop.svg")},
                   ],
         HamburgerOpen:false,
+        showDropdown:false,
         Glow1:true,
         Glow2:false,
         Glow3:false,
@@ -176,6 +190,13 @@ methods:{
        }else{
          this.visited = 3
        }
+    },
+    showDropdownFunction(bool){
+        if(bool === true || false){
+            this.showDropdown = bool
+        }else{
+            this.showDropdown = !this.showDropdown;
+        }
     }
 }
 }
@@ -205,27 +226,63 @@ ul{
 ul li{
     display:inline-block;
     list-style:none;
-    border-radius:5px;
-    padding:3px;
 }   
-.List1:hover,.List2:hover{ 
-    background-color:#41FF98;
-    box-shadow: 0px 0px 4px 0px rgb(65, 255, 152);
+.List1:hover,.List2:hover,.dropdown a:hover{ 
+    color:#4d9b70;
 }
 ul li a {
     text-decoration:none;
     color:black;
     margin:7px;
     font-size:14px;
+    padding:3px;
+    border-radius:5px;
+    cursor: pointer;
 }
-
+.dropdown a{
+    text-decoration:none;
+    color:black;
+    margin:7px;
+    cursor: pointer;
+    font-size:14px;
+}
+hr{
+    width:70%;
+    color:black;
+    border:1px solid black;
+}
+ .dropdown{
+    position:absolute;
+    top:55px;
+    right:50px;
+    /* clip-path: polygon(70% 5%, 80% 15%, 100% 15%, 100% 70%, 100% 100%, 0 100%, 0 15%, 60% 15%); */
+    width:150px;
+    height:100px;
+    /* background: rgb(126, 83, 83); */
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-evenly;
+    box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.25);
+    display:flex;
+    transition:all .5s ease-in-out;
+    z-index:10;
+} 
+.dropdown.hide{
+    opacity:0;
+    top:70px;
+}
+.dropdown.hide a{
+    pointer-events: none;
+    cursor: pointer;
+}
 .BrandName{
     position:absolute;
     margin-left:60px;
     font-weight:600;
 }
 .CartContainer{
-    margin:4px 4px 0px 0px;
+    position:relative;
+    margin:0px 10px 0px 10px;
     height:35px;
     padding:10px 2px 2px 2px;
     display:flex;
@@ -250,6 +307,7 @@ ul li a {
     height:45px;
     font-weight:400;
     cursor:pointer;
+    
 }
 .cta:focus{
     background-color:#39C87A;
@@ -278,7 +336,7 @@ ul li a {
 }
 
 .Heading{
-    font-size:35px;
+    font-size:32px;
     font-weight:700;
 }
 .Description{
@@ -287,8 +345,10 @@ ul li a {
     color:#3F3F3F;
 }
 .HeadingBox{
-    width:520px;
+    width:500px;
     display:flex;
+    margin:0;
+    /* background: chartreuse; */
 }
 .DescriptionContainer{
     background-color:none;
@@ -317,15 +377,17 @@ ul li a {
 }
 
 .Content{ 
-    width:520px;
-    height:280px;
+    width:80%;
+    max-width:600px;
+    min-height:280px;
     display:inline-block;
-    background-color:none;
     order:1;
     display:flex;
     flex-direction:column;
     overflow:hidden;
     position:relative;
+    padding:5px;
+    /* background: #3F3F3F; */
 }
 
 main{
@@ -334,6 +396,7 @@ main{
     justify-content:space-around;
     width:100vw;
     height:80vh;
+    padding:20px;
 }
 
 
@@ -346,18 +409,15 @@ main{
         background-color:none;
         display: flex;
     }
-    .Content{
-        order:2;
-        width:75vw;
-        align-items:center;
-        align-self:center;
+    .cta{
+        align-self: center;
     }
     .Image{
         order:1;
-        width:300px;
+        width:250px;
     }
     .Image img{
-        width:300px;
+        width:250px;
     }
     .HeadingBox{
         background-color:none;
@@ -365,29 +425,13 @@ main{
         height:70px;
     }
     .Heading{
-        font-size:28px;
+        font-size:26px;
     }
     .Description{
         font-size:17px;
     }
     .btns{
         left:40vw;
-    }
-
-}
-@media screen and (max-width:530px) and (min-width:370px){
-    .Content{
-        order:2;
-    }
-    .Heading{
-        font-size:30px;
-    }
-    .Image{
-        order:1;
-        width:300px;
-    }
-    .Image img{
-        width:300px;
     }
 
 }
@@ -454,7 +498,7 @@ main{
             display:none;
         }
 }
-@media screen and (max-height:540px){
+@media screen and (max-height:580px) and  (max-width:1000px){
    .Image{
     display:none;
    }
@@ -464,6 +508,15 @@ main{
    .HamburgerContent{
     margin-top:20vh;
     height:210px;
+   }
+
+}
+@media screen and (max-height:760px) and  (max-width:1000px){
+   .Image{
+    width:22vh;
+   }
+   .Image img{
+    width:22vh;
    }
 }
 @media screen and (min-width:950px){

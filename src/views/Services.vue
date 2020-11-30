@@ -72,8 +72,8 @@ nav{
     align-items:center;
 }
 .btn{
-    width:55px;
-    height:55px;
+    width:50px;
+    height:50px;
     background: rgb(255, 255, 255);
     border-radius:50%;
     position:absolute;
@@ -90,15 +90,15 @@ nav{
 .btn:hover,.btn:active{
     background: #41FF98;
     box-shadow:0px 0px 1px 0px #41FF98;
-    width:65px;
-    height:65px;
+    width:55px;
+    height:55px;
 }
 .btn:focus,.btn:active{
     outline:none;
     border:none;
 }
 .btn img{
-    width:30px;
+    width:22px;
 }
 .ContentSection{
     background-color:#f2f2f2;
@@ -154,7 +154,7 @@ h3,p{
     color:white;
 }
  img{
-    width:150px;
+    width:110px;
 }
 main{
     height:92vh;
@@ -193,7 +193,7 @@ main{
     user-select:none;
 }
 img.fullscreen{
-    width:250px;
+    width:160px;
 }
 @media screen and (max-width:960px){
     .ContentSection{

@@ -5,7 +5,7 @@
       </nav>
        <hamburgerContentWhite :hamburgerOpen="HamburgerOpen" />
         <main v-show="!HamburgerOpen">
-            <div class="ImageContainer"><img src="../assets/illustration/forgot.svg" alt="ILLUSTRATION_IMAGE" draggable="false"></div>
+            <div class="ImageContainer"><img src="../assets/illustration/forgot.svg" ondragstart="return false;" alt="ILLUSTRATION_IMAGE" draggable="false"></div>
             <h1 class="Heading">{{HeadingContent}}</h1>
             <form >
                <div class="InputContainer EmailContainer"><img src="../assets/icons/email.svg" alt="" draggable="false"  ondragstart="return false;"><input type="email"        placeholder="Email Id" required="true"></div>

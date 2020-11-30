@@ -2,6 +2,7 @@
   <section id="FAQSection">
       <nav>
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
+        <h3 class="Heading">Web Development</h3>
       </nav>
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main v-show="!HamburgerOpen && !stage1Open && !stage2Open && !stage3Open">
@@ -23,10 +24,9 @@
                     <hr class="imageHr" :class="{grow:this.advance}" > 
                 </div>
             </div>
-            <template v-for="options in optionArray">    
-                 <techBox v-show="advance" :options="options.options" :default="options.default" :key="options.default"></techBox>
+            <template v-for="options in optionArray" >    
+                 <techBox v-show="advance" :options="options" :field="options.field" :key="options.id"/>   <!-- @changeDefaultTech="changeDefault" -->
             </template>
-           
         </section>
             <div class="imageContainer">
                 <img src="../../assets/illustration/checkBox.svg" alt="Image" class="illustration" ondragstart="return false;">
@@ -44,7 +44,6 @@
         </main>
         <main v-show="!HamburgerOpen && stage3Open && !stage1Open && !stage2Open">
             <webStage3 :stage3Open="stage3Open" @stage3Closed="closeWebStage3" />
-            <h2>stage 3</h2>
         </main>
   </section>
 </template>
@@ -65,7 +64,7 @@ import webStage3 from '../../components/nestedComponents/WebStage3.vue'
             return{
                 Heading:'Web Development',
                 HamburgerOpen:false,
-                advance:false,
+                advance:true,
                 stage1Open:false,
                 stage2Open:false,
                 stage3Open:false,
@@ -89,18 +88,30 @@ import webStage3 from '../../components/nestedComponents/WebStage3.vue'
                     description:'Choose Features That You’d Like To add for eg. Login facility , Admin Panel etc.',
                 }],
                 optionArray:[
-                    {
+                    {   
+                        id:11,
+                        field:"Front-End Framwork",
                         default:"Vue",
                         options:["Vue","React"],
                     },
                     {
-                        default:"Express",
-                        options:["Express","GraphQL","Firebase"],
+                        id:12,
+                        field:"Data Fetching",
+                        default:"REST",
+                        options:["GraphQL","REST"],
                     },
                     {
-                        default:"Firestore",
-                        options:["Firestore","MongoDB"],
-                    },                
+                        id:13,
+                        field:"Backend",
+                        default:"Node.js",
+                        options:["Firebase","Node.js"],
+                    },            
+                    {
+                        id:14,
+                        field:"DataBase / Storage",
+                        default:"MongoDB + AWS",
+                        options:["Firestore","MongoDB + AWS"],
+                    },      
                 ]
 
             }
@@ -125,7 +136,14 @@ import webStage3 from '../../components/nestedComponents/WebStage3.vue'
         },
         closeWebStage3(value){
             this.stage3Open = value
-        }
+        },
+        // changeDefault({id,newDefault}){
+        //     let filteredObj = this.optionArray.filter(obj => obj.id === id);
+        //     console.log(filteredObj[0].default)
+        //     filteredObj[0].default = newDefault;
+        //    console.log(filteredObj[0].default)
+        //    this.$forceUpdate
+        // } HOW TO FIX
     },
             components:{
             gentleBox,

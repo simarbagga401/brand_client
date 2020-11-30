@@ -13,7 +13,7 @@
                     <slot name="iconBtn"></slot>
                 </footer>
                 <div class="slotDiv">
-                    <slot name="btn"></slot>
+                    <slot name="btn"></slot> 
                 </div>
                 <div class="warningContainer" v-if="warning">
                     <p><span>NOTE : </span>File size shall not exceed 218kb.</p>    
@@ -26,11 +26,9 @@
 <script>
 
     export default {
-        props:["showWarning","totalFileSize","showFontInfo"],
+        props:["showWarning","totalFileSize","showFontInfo","heading","description"],
         data(){
             return{
-                heading:"Design / Moqup",
-                description:"Choose UI Design Or We Will Do it For You.",
                 warning:this.showWarning,
             }
         },

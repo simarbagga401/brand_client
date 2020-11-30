@@ -25,12 +25,12 @@ import 'firebase/auth'
         props:["hamburgerOpen"],
         data(){
             return{
-                HamburgerContent1:"HOME",
-                HamburgerContent2:"HOW IT WORKS ?",
-                HamburgerContent3:"OUR WORK",
-                HamburgerContent4:"LOG IN / ",
-                HamburgerContent5:"SIGN UP",
-                HamburgerContent6:"FAQ SECTION",
+                HamburgerContent1:"Home",
+                HamburgerContent2:"How It Works ?",
+                HamburgerContent3:"Our Work",
+                HamburgerContent4:"Log In / ",
+                HamburgerContent5:"Sign Up",
+                HamburgerContent6:"FAQ Section",
                 signInBool:this.$store.getters.getSignInBool,
             }
         },

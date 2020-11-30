@@ -1,5 +1,5 @@
 <template>
-    <div id="fileBx">
+    <div id="fileBox">
         <p>{{file}}</p>
     </div>
 </template>

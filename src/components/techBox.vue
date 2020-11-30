@@ -2,16 +2,20 @@
     <section id="techBox">
         <div class="container">
             <div class="selectContainer">
-                <h1 class="selectHeading">{{heading}}</h1>
-                <select name="selectBox" id="selectBox" v-model="techModel">
-                    <option v-for="option in options" :key="option">{{option}}</option>
+                <h1 class="selectHeading">{{field}}</h1>
+                <select name="selectBox" v-model="techModel">
+                    <option v-for="option in options.options" :key="option">{{option}}</option>
                 </select>
                     <img src="../assets/icons/arrow_new_back.svg" alt="←" draggable="false" ondragstart="return false;" class="selectImage">
             </div>
             <div class="textContainer">
                 <p>{{description}}</p>
                 <div class="imageContainer">
-                    <img :src="image" :class="{smallImage:this.smallImage}" draggable="false" ondragstart="return false;" :style="style"> <span v-if="showSass">+</span> <img src="../assets/logo/sass.svg" v-if="showSass" draggable="false" ondragstart="return false;"> <span v-if="showTypescript">+</span> <img src="../assets/logo/typescript.svg" v-if="showTypescript" draggable="false" ondragstart="return false;">
+                    <img :src="image" draggable="false" ondragstart="return false;" :style="style"> 
+                    <span v-if="extraImage1Bool">+</span>
+                     <img :src="extraImage1Src" v-if="extraImage1Bool"  :style="extraImage1Style"   draggable="false" ondragstart="return false;">
+                      <span v-if="extraImage2Bool">+</span>
+                       <img :src="extraImage2Src" v-if="extraImage2Bool" :style="extraImage2Style" draggable="false" ondragstart="return false;">
                 </div>
             </div>
         </div>  
@@ -20,17 +24,20 @@
 
 <script>
     export default {
-        props:["options","default"],
+        props:["options","field"],
+        name:'techBox',
         data(){
             return{
-                techModel:this.default,
-                heading:'',
+                techModel:this.options.default,
                 description:'',
                 image:'',
-                smallImage:false,
-                showSass:false,
-                showTypescript:false,
-                style:''
+                extraImage1Bool:false,
+                extraImage2Bool:false,
+                extraImage1Src:"",
+                extraImage2Src:"",
+                extraImage1Style:"",
+                extraImage2Style:"",
+                style:'',
             }
         },
         watch:{
@@ -41,59 +48,82 @@
         methods:{
             updateContent:function(){
                 switch (this.techModel) {
-                    case 'Vue':
-                         this.heading = 'Front-End'    
+                    case 'Vue':   
                          this.image = require('../assets/logo/vue.svg')       
                          this.description = 'A Progressive JS Framwork'      
-                         this.smallImage = false,
-                         this.showSass = true,
-                         this.showTypescript = true
+                         this.extraImage1Bool = true,
+                         this.extraImage2Bool = true,
+                         this.extraImage1Src = require("../assets/logo/typescript.svg"),
+                         this.extraImage2Src = require("../assets/logo/sass.svg")
                         break;
-                    case 'React':
-                         this.heading = 'Front-End'    
+                    case 'React':   
                          this.image = require('../assets/logo/react.svg')       
                          this.description = 'An Awesome JS Framwork'  
-                         this.smallImage = false,
-                         this.showSass = true,
-                         this.showTypescript = true
+                         this.extraImage1Bool = true,
+                         this.extraImage2Bool = true,
+                         this.extraImage1Src = require("../assets/logo/typescript.svg"),
+                         this.extraImage2Src = require("../assets/logo/sass.svg")
                         break;
-                    case 'Express':
-                         this.heading = 'Rest Api'    
+                    case 'Node.js':   
                          this.image = require('../assets/logo/express.svg')       
                          this.description = 'A awesome Node.js Framwork'     
-                         this.smallImage = true,
-                         this.showTypescript = true
+                         this.extraImage1Bool = true,
+                         this.extraImage2Bool = false,
+                         this.extraImage1Src = require("../assets/logo/typescript.svg"),
+                         this.extraImage2Src = "",
+                         this.style = "width:80px"
                         break;
-                    case 'GraphQL':
-                         this.heading = 'GraphQL'    
+                    case 'GraphQL': 
                          this.image = require('../assets/logo/graphql.svg')       
                          this.description = 'A Query Language For Your Api'     
-                         this.smallImage = false,
-                         this.showTypescript = false
+                         this.extraImage1Bool = false,
+                         this.extraImage2Bool = false,
+                         this.extraImage1Src = "",
+                         this.extraImage2Src = ""
                         break;
-                    case 'Firebase':
-                         this.heading = 'Backend As A Service'    
+                    case 'REST': 
+                         this.image = require('../assets/logo/rest.png')       
+                         this.description = 'A Query Language For Your Api'     
+                         this.extraImage1Bool = false,
+                         this.extraImage2Bool = false,
+                         this.extraImage1Src = "",
+                         this.extraImage2Src = ""
+                        break;
+                    case 'Firebase':  
                          this.image = require('../assets/logo/firebase.svg')       
                          this.description = 'Backend As A Service'  
-                         this.smallImage = false
+                         this.extraImage1Bool = false,
+                         this.extraImage2Bool = false,
+                         this.extraImage1Src = "",
+                         this.extraImage2Src = "",
+                         this.style = "width:30px"
+                        //  this.changeDefaultTech({id:14,newDefault:"Firestore"})
                         break;   
                     case 'Firestore':
-                         this.heading = 'DataBase'    
                          this.image = require('../assets/logo/firestore.svg')       
                          this.description = 'NoSql Database by Firebase'  
-                         this.smallImage = true,
                          this.style = "width:55px"
+                         this.extraImage1Bool = false,
+                         this.extraImage2Bool = false,
+                         this.extraImage1Src = "",
+                         this.extraImage2Src = ""
                         break;       
-                    case 'MongoDB':
-                         this.heading = 'DataBase'    
+                    case 'MongoDB + AWS': 
                          this.image = require('../assets/logo/mongodb.svg')       
                          this.description = 'NoSql DataBase Like JSON'   
-                         this.smallImage = true,
-                         this.style = "width:85px" 
-                        break;            
+                         this.style = "width:80px" 
+                         this.extraImage1Bool = true,
+                         this.extraImage2Bool = false,
+                         this.extraImage1Src = require("../assets/logo/aws.svg"),
+                         this.extraImage1Style = "width:80px",
+                         this.extraImage2Src = ""
+                        break;      
                 }
                 // console.log(this.techModel)
             },
+            // changeDefaultTech(obj){
+            //     this.$emit('changeDefaultTech',obj)
+            // }
         },
         mounted(){
             this.updateContent();
@@ -135,9 +165,6 @@
 img{
     width:35px;
     margin:10px;
-}
-.smallImage{
-    width:80px;
 }
 h1{
     font-size:18px;

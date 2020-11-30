@@ -2,6 +2,7 @@
   <section id="FAQSection">
       <nav>
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
+        <h3 class="Heading">FAQ Section</h3>
       </nav>
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main v-show="!HamburgerOpen">
@@ -230,8 +231,7 @@ main{
     background-color:#C5FFE2;
     padding:20px;
     box-shadow: 
-    3px 2px 20px 0px rgba(0,0,0,0.1),
-    -3px 0px 20px 0px rgba(0,0,0,0.1);
+    3px 2px 20px 0px rgba(0,0,0,0.1);
     margin:20px;
     max-width:650px;
 }

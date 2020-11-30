@@ -1,7 +1,8 @@
 <template>
     <section>
         <main>
-    <stageChild :showWarning="true" :totalFileSize="totalFileSize">
+            <h3 id="stageHeading">Add Content</h3>
+    <stageChild :showWarning="true" :totalFileSize="totalFileSize" :heading="headings[0]" :description="descriptions[0]">
                 <backBtn :image="normalArrow" class="normalArrowBackBtn" @click.native="goBack()" slot="btn"></backBtn>
                 <template slot="setContent">
                     <div id="fileContainer">
@@ -21,7 +22,7 @@
                     <gentleIconBtn :image="doneIcon">Do it For Me </gentleIconBtn>
                 </template>     
     </stageChild>
-    <stageChild>
+    <stageChild :heading="headings[1]" :description="descriptions[1]">
                 <template slot="setContent">
                     <textarea placeholder="for eg. I Want A Minimilistic Design">
                     </textarea>
@@ -50,7 +51,9 @@ import backBtn from '../../components/back_btn.vue';
                 totalFileSize:null,
                 files:[
                     "Homepage.svg"
-                    ]
+                    ],
+                headings:["Add Content","Describe"],
+                descriptions:["Choose Photo , illustration , txt file ,SVG's You'd Like To Add.","Describe Whatever You Want"]
             }
         },
         components:{
@@ -92,6 +95,13 @@ import backBtn from '../../components/back_btn.vue';
     padding:5px;
     margin-top:15px;
     scrollbar-width: none;
+}
+#stageHeading{
+    position: absolute;
+    top:-10px;
+    left:90px;
+    color:#212121;
+    font-weight:500;
 }
 #file{
     font-weight:500;

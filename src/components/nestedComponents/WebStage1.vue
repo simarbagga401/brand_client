@@ -1,7 +1,8 @@
 <template>
     <section>
         <main>
-    <stageChild :showWarning="true" :totalFileSize="totalFileSize">
+            <h3 id="stageHeading">Design / Moqup</h3>
+    <stageChild :showWarning="true" :totalFileSize="totalFileSize" :heading="headings[0]" :description="descriptions[0]">
                 <backBtn :image="normalArrow" class="normalArrowBackBtn" @click.native="goBack()" slot="btn"></backBtn>
                 <template slot="setContent">
                     <div id="fileContainer">
@@ -21,7 +22,7 @@
                     <gentleIconBtn :image="doneIcon">Do it For Me </gentleIconBtn>
                 </template>     
     </stageChild>
-    <stageChild >
+    <stageChild :heading="headings[1]" :description="descriptions[1]">
                 <template slot="setContent">
                     <div id="fileContainer">
                         <h3 class="lightHeading">Select Colors</h3>
@@ -52,7 +53,7 @@
                     <gentleIconBtn :image="doneIcon">Do it For Me </gentleIconBtn>
                 </template>     
     </stageChild>
-    <stageChild :showFontInfo="true">
+    <stageChild :showFontInfo="true" :heading="headings[2]" :description="descriptions[2]">
             <template slot="setContent">
                 <div id="fileContainer">
                         <h3 class="lightHeading">Select Font</h3>
@@ -80,7 +81,7 @@
                 <gentleIconBtn :image="doneIcon">Do it For Me </gentleIconBtn>
             </template>     
 </stageChild>
-    <stageChild>
+    <stageChild :heading="headings[3]" :description="descriptions[3]">
                 <template slot="setContent">
                     <textarea placeholder="for eg. I Want A Minimilistic Design">
                     </textarea>
@@ -120,7 +121,9 @@ import Pickr from '@simonwep/pickr';
                 n:1,
                 files:[
                     "Homepage.svg"
-                    ]
+                    ],
+                headings:["Design / Moqup","Colors","Font","Describe"],
+                descriptions:["Choose UI Design For Your Website / Web App","Choose Colors You'd Like To Include","Choose Font You'd Like To Include","Describe Whatever You Want"]
             }
         },
         components:{
@@ -249,6 +252,13 @@ pickr.on('change',instance=>{
     margin-top:15px;
     scrollbar-width: none;
 }
+#stageHeading{
+    position: absolute;
+    top:-10px;
+    left:90px;
+    color:#212121;
+    font-weight:500;
+}
 #file{
     font-weight:500;
     color:black;
@@ -269,11 +279,6 @@ pickr.on('change',instance=>{
     justify-content:flex-start;
     position: relative;
 }
-/* .coloredBox{
-    width:13px;
-    height:13px;
-    background: rgb(207, 135, 255);
-} */
 .colorBox footer{
     width:100%;
     height:20%;
