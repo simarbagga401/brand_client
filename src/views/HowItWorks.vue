@@ -2,7 +2,7 @@
   <section id="FAQ">
       <nav>
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
-        <h3 class="Heading">How It Works?</h3>
+        <h3 class="Heading" id="heading">How It Works?</h3>
       </nav>
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main v-show="!HamburgerOpen">

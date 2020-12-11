@@ -1,14 +1,14 @@
 <template>
     <div class="btnContainer" >
-        <button class="btn" :class="{rotate:this.advance}">
-            <img :src="image" alt="BACK" draggable="false" ondragstart="return false;">
+        <button class="btn" :class="{rotate:this.advance}" :style="btnWidth">
+            <img :src="image" alt="BACK" draggable="false" ondragstart="return false;" :style="iconWidth">
         </button>
     </div>
 </template>
 
 <script>
     export default {
-        props:["advance","image"],
+        props:["advance","image","btnWidth","iconWidth"],
         data(){
             return{
 

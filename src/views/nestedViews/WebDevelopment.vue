@@ -2,7 +2,7 @@
   <section id="FAQSection">
       <nav>
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
-        <h3 class="Heading">Web Development</h3>
+        <h3 class="Heading" id="heading">Web Development</h3>
       </nav>
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main v-show="!HamburgerOpen && !stage1Open && !stage2Open && !stage3Open">
@@ -171,8 +171,8 @@ import webStage3 from '../../components/nestedComponents/WebStage3.vue'
 }
 p{
     position:fixed;
-    bottom:20px;
-    right:20px;
+    bottom:0px;
+    right:10px;
 }
 .lightHeading{
     font-weight:400;

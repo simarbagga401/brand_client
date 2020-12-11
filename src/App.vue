@@ -53,4 +53,14 @@ export default {
       li{
         list-style-type: none;
       }
+      @media screen and (max-width:400px) {
+          #heading{
+            font-size:24px;
+          }
+      }
+      @media screen and (max-width:320px) {
+          #heading{
+            font-size:21px;
+          }
+      }
 </style>

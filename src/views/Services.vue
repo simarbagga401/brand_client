@@ -77,8 +77,8 @@ nav{
     background: rgb(255, 255, 255);
     border-radius:50%;
     position:absolute;
-    top:20px;
-    left:20px;
+    top:-10px;
+    left:-10px;
     display: flex;
     align-items: center;
     justify-content:center;
@@ -113,7 +113,7 @@ nav{
     -3px 0px 20px 0px rgba(0,0,0,0.1);
     display: grid;
     grid-template-columns:repeat(2,minmax(250px,1fr));
-    grid-template-rows:repeat(2,minmax(100px,1fr));
+    grid-template-rows:repeat(2,minmax(300px,1fr));
     grid-gap:10px;
     overflow: scroll;
     scrollbar-width: none;
@@ -201,7 +201,7 @@ img.fullscreen{
         grid-template-rows:repeat(4,300px);
     }
 }
-@media screen and (max-width:490px){
+@media screen and (max-width:520px){
     .ContentSection{
         grid-template-columns:1fr;
         grid-template-rows:repeat(4,400px);

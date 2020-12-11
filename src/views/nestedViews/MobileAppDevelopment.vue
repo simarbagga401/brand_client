@@ -2,6 +2,7 @@
   <section>
       <nav>
         <hamburger @click.native="HamburgerOpen = !HamburgerOpen" :hamburgerOpen="HamburgerOpen"/>
+        <h3 class="Heading" id="heading">Web Development</h3>
       </nav>
        <hamburgerContent :hamburgerOpen="HamburgerOpen" />
         <main>

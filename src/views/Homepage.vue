@@ -6,7 +6,7 @@
         <ul>
             <li><router-link to="/login" exact  class="List2">Login</router-link></li>
             <li><router-link to="/signUp" exact  class="List2">Sign Up</router-link></li>
-            <li @mouseleave="showDropdownFunction(false)" @mouseover="showDropdownFunction(true)" @click="showDropdownFunction('toogle')" @blur="showDropdownFunction(false)"><router-link  to="" exact class="List1">More &#709;</router-link></li>
+            <li @mouseleave="showDropdownFunction(false)" @mouseover="showDropdownFunction(true)" @click="showDropdownFunction('toogle')" @blur="showDropdownFunction(false)"><router-link  to="" exact class="List1 More">More &#709;</router-link></li>
         </ul>
         <div class="CartContainer">
             <router-link to="/orders" exact>
@@ -115,7 +115,7 @@ data(){
         Glow4:false,
         visibleSlide:0,
         direction:'left',
-        visited:0
+        visited:0,
 }
 },
 components:{
@@ -191,10 +191,11 @@ methods:{
          this.visited = 3
        }
     },
-    showDropdownFunction(bool){
-        if(bool === true || false){
-            this.showDropdown = bool
-        }else{
+    showDropdownFunction(arg){
+        if(arg || !arg){
+            this.showDropdown = arg
+        }
+        else{
             this.showDropdown = !this.showDropdown;
         }
     }
@@ -253,7 +254,7 @@ hr{
 }
  .dropdown{
     position:absolute;
-    top:55px;
+    top:50px;
     right:50px;
     /* clip-path: polygon(70% 5%, 80% 15%, 100% 15%, 100% 70%, 100% 100%, 0 100%, 0 15%, 60% 15%); */
     width:150px;
@@ -299,7 +300,7 @@ hr{
     display:flex;
     align-items:center;
     justify-content:center;
-    background-color:rgb(65, 255, 152);
+    background-color:#41ff98;
     box-shadow: 0px 0px 4px 0px rgb(65, 255, 152),
                 -3px 3px 7px rgba(0,0,0,0.3);
     border-radius:5px;
@@ -431,7 +432,7 @@ main{
         font-size:17px;
     }
     .btns{
-        left:40vw;
+        display:none;
     }
 
 }
@@ -439,7 +440,7 @@ main{
     .Heading{
         font-size:25px;
     }
-        .Description{
+    .Description{
         font-size:16px;
     }
 }
@@ -447,6 +448,9 @@ main{
      ul li a{
         font-size:13px;
         margin:2px;
+    }
+    .More{
+        display:none;
     }
     .CartContainer{
         margin:2px 2px 0px 0px;
@@ -474,17 +478,17 @@ main{
 
 @media screen and (max-width:311px) {
     .Heading{
-        font-size:21px;
-}
-.Description{
-    font-size:15px;
-}
-.Image{
-    width:80vw;
-}
-.Image img{
-    width:80vw;
-}
+            font-size:21px;
+    }
+    .Description{
+        font-size:15px;
+    }
+    .Image{
+        width:80vw;
+    }
+    .Image img{
+        width:80vw;
+    }
 
 }
 @media screen and (max-width:260px){
