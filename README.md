@@ -1,5 +1,6 @@
 # client
-
+Test this app live:
+https://bruh-dev.netlify.app
 ## Project setup
 ```
 npm install
